@@ -8,4 +8,11 @@
 ## YouTube Channels
 * [Fredrik Christenson](https://www.youtube.com/c/FredrikChristenson/videos)
 * [Continuous Delivery](https://www.youtube.com/c/ContinuousDelivery/videos)
+* [Reducible](https://www.youtube.com/c/Reducible/videos)
 * [Ben Awad](https://www.youtube.com/c/BenAwad97/videos)
+* [System Design Interview](https://www.youtube.com/c/SystemDesignInterview/videos)
+* [InfoQ](https://www.youtube.com/nctv/videos)
+* [SDE Skills](https://www.youtube.com/channel/UCPumyEKs86w-GtWDd2XQYtg)
+
+## Other
+[Software development - Wikipedia](https://en.wikipedia.org/wiki/Software_development)
