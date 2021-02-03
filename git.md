@@ -10,4 +10,5 @@ one commit = one "thing" added; if its more than one thing, split into multiple 
 ### Git Flow
 ### Trunk-based Development
 ## Sources/Further Reading
-[How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+* [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+* [Trunk Based Development](https://trunkbaseddevelopment.com/)
