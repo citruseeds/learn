@@ -9,6 +9,7 @@ Aims to create detailed, concise notes on software engineering topics.
 * **Version Control**
 * Development Styles
 * Testing
+* Databases
 ### Algorithms
 ### Data Structures
 ### LeetCode Patterns & Solutions
@@ -44,6 +45,12 @@ Aims to create detailed, concise notes on software engineering topics.
 * **React Native**
 * Xamarin
 * Ionic
+#### Databases
+* MySQL
+* SQL Server
+* PostgreSQL
+* MongoDB
+* Cassandra
 ### Cloud
 * Amazon Web Services (AWS)
 * Google Cloud Platform (GCP)
@@ -53,7 +60,32 @@ Aims to create detailed, concise notes on software engineering topics.
 * Kubernetes
 ### Miscellaneous
 * Acronyms & Terms
-### Unplaced
-* GraphQL
 ### Game Development Notes
 ### Netflix Notes
+### Unplaced
+* GraphQL
+* Hadoop
+* TeamCity
+* Protocol Buffers
+* Flutter
+* Docker
+* Jenkins
+* GitHub Actions
+* Apollo
+* Gatsby.js
+* Next.js
+* Feathers.js
+* Draft.js
+* Drupal
+* Symfony
+* FaunaDB
+* DigitalOcean
+* Netlify
+* Linode
+* Vultr
+* Github/Lab Pages
+* Heroku
+* Surge
+* Vercel
+* NETCONF/YANG
+* Ads (Google, Facebook)
