@@ -89,3 +89,5 @@ Aims to create detailed, concise notes on software engineering topics.
 * Vercel
 * NETCONF/YANG
 * Ads (Google, Facebook)
+* CI/CD
+* Kafka
