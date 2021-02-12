@@ -13,6 +13,7 @@
 * [System Design Interview](https://www.youtube.com/c/SystemDesignInterview/videos)
 * [InfoQ](https://www.youtube.com/nctv/videos)
 * [SDE Skills](https://www.youtube.com/channel/UCPumyEKs86w-GtWDd2XQYtg)
+* [NeetCode](https://www.youtube.com/channel/UC_mYaQAE6-71rjSN6CeCA-g/videos)
 
 ## Other
 [Software development - Wikipedia](https://en.wikipedia.org/wiki/Software_development)
