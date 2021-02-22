@@ -12,3 +12,4 @@ one commit = one "thing" added; if its more than one thing, split into multiple 
 ## Sources/Further Reading
 * [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 * [Trunk Based Development](https://trunkbaseddevelopment.com/)
+* [github/gitignore - A collection of `.gitignore` templates](https://github.com/github/gitignore)
