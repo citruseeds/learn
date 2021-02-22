@@ -1,5 +1,9 @@
 # Time Complexity
 # Space Complexity
+o(n) space = assigning variables equal to the amount of elements...
+o(1) space = constant amount of variables used?
+
+usually between o(n) and o(1) complexity?
 # Algorithms
 ## Sorting
 ### Quicksort
