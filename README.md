@@ -47,8 +47,11 @@ Aims to create detailed, concise notes on software engineering topics.
 * Ember.js
 #### Backend
 * Laravel
-* Rails
+* Ruby on Rails
 * Django
+* .NET Core
+* Express.js
+* Spring
 #### Mobile
 * **Android**
 * **iOS**
