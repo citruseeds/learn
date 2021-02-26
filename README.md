@@ -106,3 +106,36 @@ Aims to create detailed, concise notes on software engineering topics.
 * Ads (Google, Facebook)
 * CI/CD
 * Kafka
+* Spark
+* Flink
+* Hive
+* CSS preprocessors (sass/less/?)
+* ZooKeeper
+* Thrift
+* ant
+* JUnit
+* Samza
+* Buck
+* Gradle
+* Maven
+* Pants
+* react > redux
+* Redis
+* Memcached
+* Electron
+* Ansible
+* Puppet
+* Chef
+* Salt
+* Terraform
+* JUnit
+* Linters (idiomatics?)
+* Lucene
+* RxJava
+* Dagger
+* server side rendering
+* code coverage tools
+* [webcomponents?](https://www.webcomponents.org/)
+* terraform/ansible/jenkins?
+* functional programming
+* main "aspects": frontend/backend/mobile/devops/ml/datasci/embedded(?)
