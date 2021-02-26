@@ -73,13 +73,14 @@ Aims to create detailed, concise notes on software engineering topics.
 * Firebase
 ### Other Technologies
 * Kubernetes
+* Markdown
 ### Miscellaneous
 * Acronyms & Terms
 ### Game Development Notes
 ### Netflix Notes
 ### Unplaced
 * GraphQL
-* Hadoop
+* Hadoop (mapreduce? yarn?)
 * TeamCity
 * Protocol Buffers
 * Flutter
