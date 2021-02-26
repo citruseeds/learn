@@ -56,8 +56,10 @@ Aims to create detailed, concise notes on software engineering topics.
 * **Android**
 * **iOS**
 * **React Native**
+* Flutter
 * Xamarin
 * Ionic
+* NativeScript
 #### Databases
 * MySQL
 * SQL Server
