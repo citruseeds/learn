@@ -83,7 +83,6 @@ Aims to create detailed, concise notes on software engineering topics.
 * Hadoop (mapreduce? yarn?)
 * TeamCity
 * Protocol Buffers
-* Flutter
 * Docker
 * Jenkins
 * GitHub Actions
