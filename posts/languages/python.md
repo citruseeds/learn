@@ -21,6 +21,8 @@ This style of multi-line comments apparently isn't favored.
 # done using multiple single-line comments.
 ```
 
+### Docstrings
+
 ## References/Further Reading
 * [Learn X in Y minutes, Where X=Python](https://learnxinyminutes.com/docs/python/)
 * [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
