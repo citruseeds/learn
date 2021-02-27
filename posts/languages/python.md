@@ -1,7 +1,7 @@
 # Python
 
 ## Comments
-``` python
+``` py
 # Python comments.
 
 """
