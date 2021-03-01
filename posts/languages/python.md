@@ -1,4 +1,33 @@
 # Python
+## Output
+print() function:
+
+``` py
+# Prints "Hello World"
+print("Hello World")
+
+# Prints "Hello World" as well
+print("Hello", "World")  
+# Connecting strings with print() isn't done with +, just input the variables as parameters;
+# spaces are also automatically appended whenever this is done, excluding the final parameter
+```
+
+print() has parameters `sep`, `end`, `file`, `flush`;
+
+* `sep` is the character that will separate the concatenated parameters.
+* `end` is the character that will be appended at the end of the print.
+* `file` ?
+* `flush` ?
+
+To use any of these, the parameter must be explicitly specified to differentiate it from string concatenation arguments:
+
+``` py
+# Prints "Hello@World#"
+print("Hello", "World", sep="@", end="#") 
+```
+
+https://docs.python.org/3/library/functions.html#print
+
 
 ## Comments
 ``` py
