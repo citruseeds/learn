@@ -1,4 +1,17 @@
 # Python
+## Variables
+Variables aren't declared with types. 
+
+You can't declare variables, only assignment. This means in something like:
+
+``` py
+var_name = 1
+other_var_name
+```
+
+`var_name` works, `other_var_name` doesn't (error: `NameError`).
+
+Variable naming convention is `lower_case_with_underscores`.
 ## Output
 print() function:
 
