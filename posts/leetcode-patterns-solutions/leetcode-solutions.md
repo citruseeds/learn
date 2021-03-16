@@ -479,3 +479,46 @@ class Solution:
             if i not in num_set:
                 return i
 ```
+# [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
+## Information
+## Question
+## Solutions
+scan array; if 1, bfs/dfs visit all other 1s in the area; # of islands = # of bfs/dfs searches. whether you bfs or dfs shouldn't matter, since you need to check every grid tile
+union find? dunno what this is yet though
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+        # For tracking tiles that have been visited in bfs()
+        visited_tiles = set()
+        num_islands = 0
+        
+        def unvisited_land(row, col):
+            return True if grid[row][col] == "1" and (row, col) not in visited_tiles else False
+        
+        def bfs(row_to_visit, col_to_visit):
+            tiles_to_visit = collections.deque()
+            tile = (row_to_visit, col_to_visit)
+            tiles_to_visit.append(tile)
+            visited_tiles.add(tile)
+            while tiles_to_visit:
+                # In BFS, retrieve the oldest tile and add its surrounding tiles to the queue;
+                # to DFS, you would retrieve the newest tile instead (tiles_to_visit.pop() to get right side)
+                row, col = tiles_to_visit.popleft()
+                directions_to_travel = [[0, -1], [0, 1], [1, 0], [-1, 0]]
+                for dr, dc in directions_to_travel:
+                    next_row, next_col = row + dr, col + dc
+                    if next_row in range(rows) and next_col in range(cols) and unvisited_land(next_row, next_col):
+                        next_tile = (next_row, next_col)
+                        tiles_to_visit.append(next_tile)
+                        visited_tiles.add(next_tile)
+                
+        for row in range(rows):
+            for col in range(cols):
+                if unvisited_land(row, col):
+                    bfs(row, col)
+                    num_islands += 1
+        return num_islands
+```
