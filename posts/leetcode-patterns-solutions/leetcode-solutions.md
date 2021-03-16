@@ -579,3 +579,29 @@ class Solution:
         
         return is_valid(root, float("-inf"), float("inf"))
 ```
+# [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+## Information
+## Question
+## Solutions
+* sort array, then loop thru each element: check if current.end > next.start; if true, merge (something like change current.end to next.end, dunno specifics)
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        # Sort the intervals by start, so overlaps can easily be found
+        intervals.sort(key = lambda i : i[0])
+        # Start with the first interval inside by default, 
+        # so it can be checked on first iteration of the for loop
+        merged_intervals = [intervals[0]]
+        # Remember to start at the second element, since first element is inserted
+        for start_interval, end_interval in intervals[1:]:
+            # If the next interval's start time is less than the latest interval's end time, merge the intervals 
+            # (done by setting the latest interval's end time to the max of both intervals' end times);
+            # else, append the next interval to the merged interval list
+            if merged_intervals[-1][1] >= start_interval:
+                merged_intervals[-1][1] = max(merged_intervals[-1][1], end_interval)
+            else:
+                merged_intervals.append([start_interval, end_interval])
+        return merged_intervals
+```
