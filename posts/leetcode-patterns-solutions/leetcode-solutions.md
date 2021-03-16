@@ -836,3 +836,39 @@ class Solution:
                         left += 1
         return result
 ```
+# [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        # Negative numbers are possible, so start from lowest possible value rather than 0
+        max_sum = float('-inf')
+        def max_gain(node):
+            nonlocal max_sum
+            # If the parent has no children, can't select what doesn't exist (return 0 to force no selection)
+            if not node:
+                return 0
+            # The max gain of child nodes is either their max gain (if chosen to include) or 0 (if chosen to not include)
+            left_max_gain = max(max_gain(node.left), 0)
+            right_max_gain = max(max_gain(node.right), 0)
+            # Check to see if node + max sum of both children is the known max; if it is, assign it
+            # if a new max is found later, it'll be overwritten
+            new_path_max_sum = left_max_gain + node.val + right_max_gain
+            max_sum = max(max_sum, new_path_max_sum)
+            # The max gain that a node can give (while continuing the path) is 
+            # the node's value + the max of the left side or right side; 
+            # both sides can only be selected if you start a new path
+            return node.val + max(left_max_gain, right_max_gain)
+        max_gain(root)
+        return max_sum
+```
