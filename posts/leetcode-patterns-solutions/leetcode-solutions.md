@@ -674,3 +674,27 @@ class Solution:
                 return False
         return True
 ```
+# 3. Longest Substring Without Repeating Characters
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left = 0
+        contained_chars = set()
+        result = 0
+        for right in range(len(s)):
+            # If expanding the window to the right introduces a duplicate, 
+            # use while loop to shrink the window from the left (remove the character at left, then increment left)
+            while s[right] in contained_chars:
+                contained_chars.remove(s[left])
+                left += 1
+            # Add the new character after the window shrinks; doing this beforehand may cause it to be removed unintentionally
+            contained_chars.add(s[right])
+            # Remember to add 1 to get the actual window size (ex: left, right = 0, 0 is window size 1)
+            result = max(result, (right - left) + 1)
+        return result
+```
