@@ -111,3 +111,35 @@ class Solution:
                     dp[i] = max(dp[i], 1 + dp[j])
         return max(dp)
 ```
+# [133. Clone Graph](https://leetcode.com/problems/clone-graph/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        # Track the clones in a dictionary to prevent duplicate clones
+        copies = {}
+        def clone_dfs(node):
+            # If the node has already been cloned, return the clone
+            if node in copies:
+                return copies[node]
+            copy = Node(node.val)
+            copies[node] = copy
+            # Recursively clone all neighbors and append them to the clone
+            for neighbor in node.neighbors:
+                copy.neighbors.append(clone_dfs(neighbor))
+            return copy
+        # clone_dfs() needs to return a clone to function, so can just call it on root node;
+        # also edge case for empty list
+        return clone_dfs(node) if node else None
+```
