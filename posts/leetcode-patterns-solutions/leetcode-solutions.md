@@ -318,3 +318,43 @@ class Solution:
             # Store the current number/index, in case we run into its complement in the future
             complements.setdefault(num, i)
 ```
+# [76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# TODO: commenting not done yet
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        have_chars, need_chars = {}, {}
+        # Populate needed_chars with the character counts of t
+        for char in t:
+            need_chars[char] = need_chars.get(char, 0) + 1
+        # Track the number of distinct letter counts that you currently have, 
+        # and distinct letter counts that need to be met
+        have_count, need_count = 0, len(need_chars)
+        # Track the start/end indices of the result substring for returning, and the length of it
+        result_substring, result_length = [-1, -1], float("inf")
+        left = 0
+        for right in range(len(s)):
+            char = s[right]
+            have_chars[char] = have_chars.get(char, 0) + 1
+            
+            if char in need_chars and have_chars[char] == need_chars[char]:
+                have_count += 1
+            # If all the 
+            while have_count == need_count:
+                current_length = right - left + 1
+                if current_length < result_length:
+                    result_substring = [left, right]
+                    result_length = current_length
+                have_chars[s[left]] -= 1
+                if s[left] in need_chars and have_chars[s[left]] < need_chars[s[left]]:
+                    have_count -= 1
+                left += 1
+        if result_length == float("inf"):
+            return ""
+        return s[result_substring[0]:result_substring[1] + 1]
+```
