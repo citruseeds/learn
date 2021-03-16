@@ -463,3 +463,19 @@ class Solution:
             return nums[0]
         return max(max_rob(nums[1:]), max_rob(nums[:-1]))
 ```
+# [268. Missing Number](https://leetcode.com/problems/missing-number/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        # Create a set from the list of numbers
+        num_set = set(nums)
+        # Check all numbers from 0 to n; if the number isn't in the set, it's the missing number
+        for i in range(len(nums) + 1):
+            if i not in num_set:
+                return i
+```
