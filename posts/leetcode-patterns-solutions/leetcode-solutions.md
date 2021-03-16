@@ -143,3 +143,43 @@ class Solution:
         # also edge case for empty list
         return clone_dfs(node) if node else None
 ```
+# [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        output = []
+        # Use queue for storing bfs visits
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            # The length of the queue is equal to the nodes on the current level; 
+            # needed to make sure that the level only contains nodes of that level, 
+            # as additional nodes are added for the next level while processing the current one
+            queue_length = len(queue)
+            current_level = []
+            # Process all nodes at the current level, appending their value to the list and 
+            # adding their children to the queue
+            for i in range(queue_length):
+                node = queue.popleft()
+                # If nodes have no children, null nodes will be added to the queue; check for this
+                if node:
+                    current_level.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
+            # Need to check if current_level isn't empty so an empty list isn't pushed into the output;
+            # this would occur if all nodes in the queue are null
+            if current_level:
+                output.append(current_level)
+        return output
+```
