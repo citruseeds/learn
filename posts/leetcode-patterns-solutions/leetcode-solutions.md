@@ -382,3 +382,36 @@ class Solution:
                 
         return known_max_profit
 ```
+# [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# TODO: Logic not understood fully still; return to this
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            # Integer division to get the middle of the array
+            mid = (left + right) // 2
+            # If the middle is the target, return it
+            if nums[mid] == target:
+                return mid
+            # Use knowledge of a sorted array to determine if mid is in the bigger or smaller portion of the array;
+            # in a sorted array, every element should be <= the leftmost element.
+            # If mid is in the lesser half, ...
+            if nums[left] <= nums[mid]:
+                if target > nums[mid] or target < nums[left]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            # If mid is in the greater half, ...
+            else:
+                if target < nums[mid] or target > nums[right]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+        return -1
+```
