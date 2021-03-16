@@ -656,3 +656,21 @@ class Solution:
                     return True
         return False
 ```
+# [252. Meeting Rooms](https://leetcode.com/problems/meeting-rooms/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        # Sort list of intervals by start, so overlaps can easily be found
+        intervals.sort(key = lambda i : i[0])
+        for i in range(len(intervals) - 1):
+            # If the current interval's end is greater than the next interval's start,
+            # there's an overlap, so can't attend the next meeting; return false
+            if intervals[i][1] > intervals[i + 1][0]:
+                return False
+        return True
+```
