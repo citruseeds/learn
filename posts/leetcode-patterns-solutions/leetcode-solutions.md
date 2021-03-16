@@ -40,3 +40,27 @@ class Solution:
                 dp[col][row] = dp[col - 1][row] + dp[col][row - 1]
         return dp[m - 1][n - 1]
 ```
+# [322. Coin Change](https://leetcode.com/problems/coin-change/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # Initialize DP array of length amount + 1 (calling dp[amount] at end);
+        # infinity used as default as dp array stores minimum # of coins for a given amount
+        dp = [float("inf")] * (amount + 1)
+        # Minimum # of coins to make 0 is 0; base
+        dp[0] = 0
+        # dp[0] is known, so start at 1; iterate through every coin quantity until amount is reached
+        for amt in range(1, amount + 1):
+            # Iterate through all possible coins; if valid (>= 0), select either the current known minimum for amount or
+            # 1 (accounting for itself) + the currently calculated minimum if it's better
+            for coin in coins:
+                if amt - coin >= 0:
+                    dp[amt] = min(dp[amt], 1 + dp[amt - coin])
+        # If no combination was possible for amount, dp[amount] would never be set; return -1 in this case
+        return dp[amount] if dp[amount] != float("inf") else -1
+```
