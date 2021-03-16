@@ -183,3 +183,37 @@ class Solution:
                 output.append(current_level)
         return output
 ```
+# [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        counter = 0
+        stack = []
+        node = root
+        # Since k is always guaranteed to be <= n, loop should run indefinitely
+        while node or stack:
+            # Repeatedly add the current node to the stack, then traverse down the left side
+            while node:
+                stack.append(node)
+                node = node.left
+            # When there are no more nodes on the left side, process middle node; 
+            # increment a counter to indicate the current iteration; if counter == k, 
+            # you're on the kth node, so return it 
+            node = stack.pop()
+            counter += 1
+            if counter == k:
+                return node.val
+            # Traverse down the right side after processing the left and middle
+            node = node.right
+```
