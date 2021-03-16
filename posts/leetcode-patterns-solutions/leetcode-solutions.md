@@ -624,3 +624,35 @@ class Solution:
             num_count[num] = 1
         return False
 ```
+# [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        # Use 2 nodes; fast_node will increment by 2 every iteration, slow_node by 1
+        slow_node = head
+        fast_node = head
+        
+        while fast_node:
+            slow_node = slow_node.next
+            fast_node = fast_node.next
+            
+            # If fast_node isn't null (not end of list), increment again; 
+            # if fast_node == slow_node (fast_node caught up to slow_node), there's a cycle; return true. 
+            # If there's no cycle, fast_node will become null and won't cross paths with slow_node
+            if fast_node:
+                fast_node = fast_node.next
+                if fast_node == slow_node:
+                    return True
+        return False
+```
