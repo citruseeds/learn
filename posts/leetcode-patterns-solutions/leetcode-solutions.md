@@ -358,3 +358,27 @@ class Solution:
             return ""
         return s[result_substring[0]:result_substring[1] + 1]
 ```
+# [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        known_max_profit = 0
+        # Use 2 indices to track current_minimum and current_maximum;
+        # current is used because indices will be "reset" to the index of 
+        # the known lowest value whenever it's discovered
+        current_minimum, current_maximum = 0, 0
+        
+        for i, price in enumerate(prices):
+            if price < prices[current_minimum]:
+                current_minimum, current_maximum = i, i
+            if price > prices[current_maximum]:
+                current_maximum = i
+                known_max_profit = max(known_max_profit, (prices[current_maximum] - prices[current_minimum]))
+                
+        return known_max_profit
+```
