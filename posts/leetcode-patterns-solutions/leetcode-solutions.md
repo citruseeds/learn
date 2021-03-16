@@ -415,3 +415,26 @@ class Solution:
                     left = mid + 1
         return -1
 ```
+# [198. House Robber](https://leetcode.com/problems/house-robber/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        previous_selection, two_back_rob = 0, 0
+        max_rob = 0
+        for current_num in nums:
+            # The maximum amount to rob at the current house is either to reset and start again as 
+            # current house + 2 houses back, or select none and keep the value of previous house + all previous robs 
+            # (any other combination would lead to a conflict)
+            max_rob = max(previous_selection, two_back_rob + current_num)
+            # The new "2 houses back" for the next loop will be the current previous house 
+            # (which includes all previous robs)
+            two_back_rob = previous_selection
+            # The new previous selection for the next loop will be the currently selected option
+            previous_selection = max_rob
+        return max_rob
+```
