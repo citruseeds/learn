@@ -258,3 +258,63 @@ class Solution:
                 return False
         return True
 ```
+# [1. Two Sum](https://leetcode.com/problems/two-sum/)
+## Information
+**Category:** Easy
+
+**Patterns:** ?
+
+## Question
+Given an array of integers `nums` and an integer `target`, return *indices* of the two numbers such that they *add up* to *`target`*.
+
+You may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.
+
+You can return the answer in any order.
+
+**Example 1:**
+```
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+```
+
+**Example 2:**
+```
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+```
+
+**Example 3:**
+```
+Input: nums = [3,3], target = 6
+Output: [0,1]
+``` 
+
+**Constraints:**
+* `2 <= nums.length <= 103`
+* `-109 <= nums[i] <= 109`
+* `-109 <= target <= 109`
+* **Only one valid answer exists.**
+
+## Solutions
+* Double `for` loop; return array iterating indices `i` and `j` if `target == (nums[i] + nums[j])`
+* For each number in array, insert into hash table (key = number, value = index) and check if hash table contains key `target - nums[i]`; if it does, return `hashtable.get(target - number)` and `i`
+## Notes
+the goal for two sum is `target = nums[i] + nums[j]`, so you can search for `nums[j]` by applying algebra to the original equation to create `target - nums[i] = nums[j]`. `nums[i]` and `nums[j]` are from the same array, so by storing `target - nums[i]` in a hash table, you can access `nums[j]` in O(1) time, if it exists
+
+## Solution Code
+``` py
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # Initialize dictionary for storing {complement: index}
+        complements = {}
+        for i, num in enumerate(nums):
+            # Since the goal is nums[i] + nums[j] = target, 
+            # if nums[j] = target - nums[i] exists, we're done
+            complement = target - num
+            if complement in complements:
+                return [i, complements.get(complement)]
+
+            # Store the current number/index, in case we run into its complement in the future
+            complements.setdefault(num, i)
+```
