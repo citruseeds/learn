@@ -764,3 +764,40 @@ class Solution:
                 right -= 1
         return max_water
 ```
+# [572. Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        def validate(s_node, t_node):
+            # Base cases: if both node's parents have no children on a given side, return true, or
+            # if one node's parent has a child but the other doesn't, it's not matching; return false
+            if not s_node and not t_node:
+                return True
+            if not s_node or not t_node:
+                return False
+            # If both nodes have the same value (both are equal), check if their children are also equal
+            # to determine if the trees are the same
+            if s_node.val == t_node.val:
+                return (validate(s_node.left, t_node.left) and
+                        validate(s_node.right, t_node.right))
+
+        # Base cases: if the end of the main tree's subtrees is reached, no matching subtree exists, or
+        # if the current subtree is matching, return true (as it's found)
+        if not s:
+            return False
+        if validate(s, t):
+            return True
+        # Loop case: if the current main tree's subtree isn't matching, check its left and right subtrees
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+```
