@@ -64,3 +64,26 @@ class Solution:
         # If no combination was possible for amount, dp[amount] would never be set; return -1 in this case
         return dp[amount] if dp[amount] != float("inf") else -1
 ```
+# [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_product = max(nums)
+        # Store both the minimum and maximum of the current; because of negatives, 
+        # the possible maximum could come from either the minimum or maximum
+        # 1s are neutral in multiplication, so use this
+        prev_min_product, prev_max_product = 1, 1
+        for num in nums:
+            # Store previous max in temp variable to use it when calculating new previous min
+            temp = prev_max_product
+            # Choices: multiply current number with the previous product, or ignore it (if it's a 0)
+            prev_max_product = max(prev_min_product * num, prev_max_product * num, num)
+            prev_min_product = min(prev_min_product * num, temp * num, num)
+            max_product = max(max_product, prev_max_product)
+        return max_product
+```
