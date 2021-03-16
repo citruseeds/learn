@@ -721,3 +721,27 @@ class Solution:
             known_max_sum = max(known_max_sum, current_sum)
         return known_max_sum
 ```
+# 128. Longest Consecutive Sequence
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        # Create a set from the list of numbers to easily iterate over unique numbers
+        existing_nums = set(nums)
+        longest_sequence = 0
+        # For each number, check if the number before it (number - 1) exists; 
+        # if it does, it's part of a longer sequence (ignore these); if it doesn't, it's the start of a sequence;
+        # repeatedly search for the numbers after it; if they exist, increment counter by 1 until sequence breaks;
+        # when sequence breaks, take the max of known longest sequence and current sequence
+        for num in existing_nums:
+            if (num - 1) not in existing_nums:
+                sequence = 0
+                while (num + sequence) in existing_nums:
+                    sequence += 1
+                longest_sequence = max(longest_sequence, sequence)
+        return longest_sequence
+```
