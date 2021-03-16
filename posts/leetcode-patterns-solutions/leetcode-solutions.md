@@ -438,3 +438,28 @@ class Solution:
             previous_selection = max_rob
         return max_rob
 ```
+# [213. House Robber II](https://leetcode.com/problems/house-robber-ii/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# The question is the same as House Robber 1, but the max of (all but first house) and (all but last house)
+# needs to be taken, and a new edge case of only 1 house due to the new restriction
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        def max_rob(nums):
+            one_back_rob, two_back_rob = 0, 0
+            max_rob = 0
+            for current_num in nums:
+                max_rob = max(one_back_rob, two_back_rob + current_num)
+                two_back_rob = one_back_rob
+                one_back_rob = max_rob  
+            return max_rob
+        # If there's only one house, it will be missed by the max function call
+        # (excluding first and excluding last will be 0 in array size 1)
+        if len(nums) == 1:
+            return nums[0]
+        return max(max_rob(nums[1:]), max_rob(nums[:-1]))
+```
