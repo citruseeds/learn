@@ -87,3 +87,27 @@ class Solution:
             max_product = max(max_product, prev_max_product)
         return max_product
 ```
+# [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# TODO: implement dp binsearch solution?
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        # Initialize DP array as 1, the shortest possible value of a subsequence
+        dp = [1] * len(nums)
+        # Start from last element and work up to first element, as earlier elements depend on the result of later elements
+        for i in range(len(nums) - 1, -1, -1):
+            # Iterate through all elements that come after nums[i] to try combinations with their longest subsequences;
+            for j in range(i + 1, len(nums)):
+                # If an element that comes after nums[i] is greater than nums[i], it's not increasing; ignore
+                if nums[i] < nums[j]:
+                    # The current known longest possible subsequence at a given position is either
+                    # itself (if a previous selection yielded a higher result) or 1 + longest subsequence of current selection
+                    # (this is why it's done backwards?); the actual longest can't be known until all combinations are tried?
+                    dp[i] = max(dp[i], 1 + dp[j])
+        return max(dp)
+```
