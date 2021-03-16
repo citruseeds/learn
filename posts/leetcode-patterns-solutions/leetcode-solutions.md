@@ -698,3 +698,26 @@ class Solution:
             result = max(result, (right - left) + 1)
         return result
 ```
+# [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        # Since array is guaranteed to be at least size 1, set known max to lowest possible value;
+        # it'll be overwritten once the loop starts.
+        # If empty arrays were possible, would need an edge case check
+        known_max_sum = float('-inf')
+        current_sum = 0
+        for num in nums:
+            # If the current sum is negative, it should be ignored; reset current_sum to do this
+            if current_sum < 0:
+                current_sum = 0
+            current_sum += num
+            # The known max will either be itself, or current sum + current number
+            known_max_sum = max(known_max_sum, current_sum)
+        return known_max_sum
+```
