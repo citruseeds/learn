@@ -522,3 +522,35 @@ class Solution:
                     num_islands += 1
         return num_islands
 ```
+# [226. Invert Binary Tree]
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        # Base case; if the node is null, return; this means that 
+        # the node that called the function has no child at the location.
+        # Not having this leads to null references
+        if not root:
+            return None
+        
+        # Swapping nodes
+        temp = root.left
+        root.left = root.right
+        root.right = temp
+        
+        # Loop cases; inverting the child nodes of current node's children
+        self.invertTree(root.left)
+        self.invertTree(root.right)
+        
+        return root
+```
