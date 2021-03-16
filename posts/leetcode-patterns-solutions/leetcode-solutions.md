@@ -21,3 +21,22 @@ class Solution:
             return  False
         return validate(p, q)
 ```
+# [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        # Base case: tiles on the topmost/leftmost only have 1 path to reach, since can only move right/down
+        # (out of bounds considered as 0)
+        dp = [[1] * n for _ in range(m)]
+        # Ignore the first row/col since it's already known to be 1
+        for col in range(1, m):
+            for row in range(1, n):
+                # The number of paths to a given tile is equal to the number of paths of the tile above/left of it
+                dp[col][row] = dp[col - 1][row] + dp[col][row - 1]
+        return dp[m - 1][n - 1]
+```
