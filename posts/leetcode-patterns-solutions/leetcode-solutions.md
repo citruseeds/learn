@@ -217,3 +217,44 @@ class Solution:
             # Traverse down the right side after processing the left and middle
             node = node.right
 ```
+# [207. Course Schedule](https://leetcode.com/problems/course-schedule/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # Populate a dictionary of key = course, value = list of prerequisite courses
+        courses = defaultdict(list)
+        for course, prereq in prerequisites:
+            courses[course].append(prereq)
+        
+        # Track previously visited locations for dfs break condition; 
+        # if the same course appears twice, there's a cycle
+        visited = set()
+        def can_complete_dfs(course):
+            # Base cases: If the course has no prerequisites, return true; 
+            # if the course has been visited before, there's a cycle; return false;
+            if not courses[course]:
+                return True
+            if course in visited:
+                return False
+            # Visit the location, then check to see if all of its prerequisites can be completed;
+            # the only case for not completing is if there's a cycle, so if there is one, return false
+            visited.add(course)
+            for prereq in courses[course]:
+                if not can_complete_dfs(prereq):
+                    return False
+            # If all prerequisites can be completed, the course can be completed; 
+            # empty the prerequisite list to indicate that
+            courses[course] = []
+            return True
+        # Iterate through all courses and check if they can be completed;
+        # looping like this is fine because there's guaranteed to be courses 0 to numCourses
+        for course in range(numCourses):
+            if not can_complete_dfs(course):
+                return False
+        return True
+```
