@@ -605,3 +605,22 @@ class Solution:
                 merged_intervals.append([start_interval, end_interval])
         return merged_intervals
 ```
+# [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        # Use dictionary to track previous elements
+        num_count = {}
+        for num in nums:
+            # If the current number already exists in the dictionary, it's a duplicate; return true
+            # else, add the number to the dictionary
+            if num in num_count:
+                return True
+            num_count[num] = 1
+        return False
+```
