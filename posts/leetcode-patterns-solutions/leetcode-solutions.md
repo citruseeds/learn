@@ -1023,3 +1023,51 @@ class Solution:
             tail.next = l2
         return dummy.next
 ```
+# 23. Merge k Sorted Lists
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        # Edge case for k == 0
+        if not lists or len(lists) == 0:
+            return None
+        # While the number of lists is greater than 1, repeatedly merge the lists in groups of 2
+        while len(lists) > 1:
+            merged_lists = []
+            # Since the merging creates a new array, increment by 2 to the same list being merged twice
+            for i in range(0, len(lists), 2):
+                list_1 = lists[i]
+                # If there is an odd number of lists, the second list will be null
+                list_2 = lists[i + 1] if (i + 1) < len(lists) else None
+                merged_lists.append(self.merge_lists(list_1, list_2))
+            lists = merged_lists
+        # At the end, there will only be one list in the array, as everything else was merged together
+        return lists[0]
+    
+    # Use merge two sorted lists algorithm
+    def merge_lists(self, l1, l2):
+        dummy = ListNode()
+        tail = dummy
+        while l1 and l2:
+            if l1.val <  l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+        if l1:
+            tail.next = l1
+        elif l2:
+            tail.next = l2
+        return dummy.next
+```
