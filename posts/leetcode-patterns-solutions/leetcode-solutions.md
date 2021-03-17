@@ -1071,3 +1071,48 @@ class Solution:
             tail.next = l2
         return dummy.next
 ```
+# [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        output = []
+        # Get the start/end ranges for unvisited rows/columns; 
+        # these will change as rows/columns are visited
+        row_start, row_end = 0, len(matrix)
+        col_start, col_end = 0, len(matrix[0])
+        
+        while row_start < row_end and col_start < col_end:
+            # Collect all elements in the topmost row
+            for col in range(col_start, col_end):
+                output.append(matrix[row_start][col])
+            # The entire topmost row has been obtained; increment row_start by 1 
+            # to make the second row the new topmost row (to prevent re-visiting)
+            row_start += 1
+            
+            # Collect all elements in the rightmost column
+            for row in range(row_start, row_end):
+                output.append(matrix[row][col_end - 1])
+            # Decrement col_end by 1 to prevent re-visiting
+            col_end -= 1
+            
+            # Check here to ensure the loop condition is still true, 
+            # as row_start and col_end values have changed inside the loop
+            if not (row_start < row_end and col_start < col_end):
+                break
+            
+            # Collect all elements in the bottommost row, going backwards
+            for col in range(col_end - 1, col_start - 1, -1):
+                output.append(matrix[row_end - 1][col])
+            row_end -= 1
+            
+            # Collect all elements in the leftmost column, going backwards
+            for row in range(row_end - 1, row_start - 1, -1):
+                output.append(matrix[row][col_start])
+            col_start += 1
+        return output
+```
