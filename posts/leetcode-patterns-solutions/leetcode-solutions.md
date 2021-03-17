@@ -1159,3 +1159,39 @@ class Solution:
             for col in range(cols):
                 matrix[0][col] = 0
 ```
+# [48. Rotate Image](https://leetcode.com/problems/rotate-image/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        row_start, row_end = 0, len(matrix)
+        col_start, col_end = 0, len(matrix[0])
+        while row_start < row_end and col_start < col_end:
+            offset = 0
+            # TODO: explain this, and the reason why it's not offset < len(matrix) - 1
+            while offset < ((row_end - 1) - row_start):
+                # Store top left in temp variable
+                temp = matrix[row_start][col_start + offset]
+                # Move bottom left to top left
+                matrix[row_start][col_start + offset] = matrix[(row_end - 1) - offset][col_start]
+                # Move bottom right to bottom left
+                matrix[(row_end - 1) - offset][col_start] = matrix[row_end - 1][(col_end - 1) - offset]
+                # Move top right to bottom right
+                matrix[row_end - 1][(col_end - 1) - offset] = matrix[row_start + offset][(col_end - 1)]
+                # Move temp (top left) to top right
+                matrix[row_start + offset][col_end - 1] = temp
+                # Increment the offset so different elements are rotated on the next round
+                offset += 1
+            # Shrink the size of the matrix portion being swapped
+            row_start += 1
+            row_end -= 1
+            col_start += 1
+            col_end -= 1
+```
