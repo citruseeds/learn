@@ -965,3 +965,27 @@ class Solution:
         remove_next_node.next = remove_next_node.next.next
         return dummy.next
 ```
+# [125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        # Initialize 2 indices at the start and end of the string for comparison
+        left, right = 0, len(s) - 1
+        
+        while left < right:
+            # Filtering for alphanumeric characters only
+            while left < right and not s[left].isalnum():
+                left += 1
+            while left < right and not s[right].isalnum():
+                right -= 1
+            if s[left].lower() != s[right].lower():
+                return False
+            left += 1
+            right -= 1
+        return True
+```
