@@ -989,3 +989,37 @@ class Solution:
             right -= 1
         return True
 ```
+# [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # Used for keeping a reference to the first ListNode (dummy.next)
+        dummy = ListNode()
+        # The value of tail will change to represent the end of thte list; starts at dummy
+        tail = dummy
+        while l1 and l2:
+            if l1.val <  l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+        # One list will run out of elements first; when this happens, 
+        # check which one it was and add the rest of that list to the tail
+        if l1:
+            tail.next = l1
+        elif l2:
+            tail.next = l2
+        return dummy.next
+```
