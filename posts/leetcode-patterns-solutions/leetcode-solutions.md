@@ -898,3 +898,33 @@ class Solution:
         # returning result would give a list of the keys (the tuples) instead of the values (the string lists)
         return result.values()
 ```
+# [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# This is the solution that can be expanded to support any character; for the version that's O(1) space 
+# and only considers lowercase alphabetical characters, see solution for LC 49 (Group Anagrams), as it's basically the same thing
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        s_length, t_length = len(s), len(t)
+        # If both strings are not the same length, they can't be anagrams
+        if s_length != t_length:
+            return False
+        # Use dictionary to store character counts
+        char_count = defaultdict(int)
+        
+        # Have character appearances in the first string increment the count, 
+        # and appearances in the second string decrement by the same amount
+        for i in range(s_length):
+            char_count[s[i]] += 1
+            char_count[t[i]] -= 1
+        # Iterate the entire dictionary; if a value isn't 0, they're not anagrams
+        # (if they were, the increment/decrements would cancel out to 0)
+        for key in char_count:
+            if char_count[key] != 0:
+                return False
+        return True
+```
