@@ -872,3 +872,29 @@ class Solution:
         max_gain(root)
         return max_sum
 ```
+# [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        # Use defaultdict(list) here instead of {}, so keys that don't exist initialize as empty lists
+        result = defaultdict(list)
+        
+        for string in strs:
+            # Initialize array of 0's size 26
+            char_count = [0] * 26
+            for char in string:
+                # characters start at 'a', so char - a can be used as an offset 
+                # (a - a = 0, b - a = 1, ...)
+                char_count[ord(char) - ord('a')] += 1
+            # The string's letter count is used as the dictionary key, 
+            # so all strings with the same letter count (anagrams) are grouped
+            result[tuple(char_count)].append(string)
+        # Return result.values() here for the list of anagram strings;
+        # returning result would give a list of the keys (the tuples) instead of the values (the string lists)
+        return result.values()
+```
