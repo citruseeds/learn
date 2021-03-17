@@ -928,3 +928,40 @@ class Solution:
                 return False
         return True
 ```
+# 19. Remove Nth Node From End of List
+## Information
+## Question
+## Solutions
+* 2 pass approach; loop once to find length of the list, loop again to remove nth element; O(2L) = O(L) time (L = list length) since 2 consecutive loops, O(1) space
+* 1 pass approach; 2 pointers, where one pointer is n iterations ahead of the other; once the front pointer reaches the end, remove valule of the back pointer; O(L) time since 1 loop, O(1) space
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        # Need to return the head, so use dummy.next as a reference to head;
+        # whenever you need to return the linked list, use dummy.next as a reference to it, 
+        # and work with other variables for the algorithm
+        dummy = ListNode(0, head)
+        # Singly-linked lists can only see ahead of them; need to make sure that 
+        # the node you stop on is the node before the one to be removed
+        remove_next_node = dummy
+        # Use a second node that's n steps ahead of the node to remove;
+        # it's set to dummy.next and not dummy because of remove_next_node removing the node after it,
+        # not the node that it actually is
+        n_ahead_node = dummy.next
+        for _ in range(n):
+            n_ahead_node = n_ahead_node.next
+        # Increment both nodes, searching for the end of the list
+        while n_ahead_node:
+            remove_next_node = remove_next_node.next
+            n_ahead_node = n_ahead_node.next
+        # Assign the next node of the node before the node to remove the value of the node to remove's next node
+        remove_next_node.next = remove_next_node.next.next
+        return dummy.next
+```
