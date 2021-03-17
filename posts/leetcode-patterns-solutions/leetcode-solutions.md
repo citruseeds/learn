@@ -1116,3 +1116,46 @@ class Solution:
             col_start += 1
         return output
 ```
+# [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # Use a boolean variable to act as a 0-marker for the columns, since they would overlap and become impossible to differentiate;
+        # can pick either row or column, it shouldn't matter
+        is_column_zero = False
+        
+        rows, cols = len(matrix), len(matrix[0])
+        for row in range(rows):
+            for col in range(cols):
+                # If an element is 0, mark the first element of the row/column it's in as 0; this is fine because 
+                # those elements should have been checked already
+                if matrix[row][col] == 0:
+                    matrix[0][col] = 0
+                    # TODO: explain this lol
+                    if row > 0:
+                        matrix[row][0] = 0
+                    else:
+                        is_column_zero = True
+        # Scan the matrix again (except first row/column, special case); if the first element of the row it's part of is 0 or 
+        # first element of the column it's part of is 0, set to 0
+        for row in range(1, rows):
+            for col in range(1, cols):
+                if matrix[0][col] == 0 or matrix[row][0] == 0:
+                    matrix[row][col] = 0
+
+        # Use the top-left element and boolean variable to individually zero out the first row/column
+        if matrix[0][0] == 0:
+            for row in range(rows):
+                matrix[row][0] = 0
+        if is_column_zero:
+            for col in range(cols):
+                matrix[0][col] = 0
+```
