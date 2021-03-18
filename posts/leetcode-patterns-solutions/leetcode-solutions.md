@@ -111,6 +111,39 @@ class Solution:
                 result.append(rightmost_node.val)
         return result
 ```
+# [86. Partition List](https://leetcode.com/problems/partition-list/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        # Create two lists; lesser holds values < x, greater holds values >= x
+        lesser_dummy, greater_dummy = ListNode(), ListNode()
+        lesser_tail, greater_tail = lesser_dummy, greater_dummy
+        
+        # Iterate through all the nodes, assigning the values to the lesser or greater list
+        while head:
+            if head.val < x:
+                lesser_tail.next = head
+                lesser_tail = lesser_tail.next
+            else:
+                greater_tail.next = head
+                greater_tail = greater_tail.next
+            head = head.next
+        
+        # Attach the end of the lesser list to the start of the greater list, and set the end of the greater list to null
+        lesser_tail.next = greater_dummy.next
+        greater_tail.next = None
+        return lesser_dummy.next
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
