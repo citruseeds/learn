@@ -232,6 +232,36 @@ class Solution:
         longest_path(root)
         return diameter
 ```
+# [337. House Robber III](https://leetcode.com/problems/house-robber-iii/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rob(self, root: TreeNode) -> int:
+        # 2 choices: don't include root and take the max of root's children, or
+        # include root node and take the max of root's children's children (their max without root)
+        def max_rob(node):
+            # If node is null, only options are 0
+            if not node:
+                return [0, 0]
+            left_max = max_rob(node.left)
+            right_max = max_rob(node.right)
+            
+            with_root = node.val + left_max[1] + right_max[1]
+            without_root = max(left_max) + max(right_max)
+            
+            return [with_root, without_root]
+        return max(max_rob(root))
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
