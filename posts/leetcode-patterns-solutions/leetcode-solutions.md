@@ -297,6 +297,26 @@ class Solution:
                 if grid[row][col] == 1:
                     return perimeter_dfs(row, col)
 ```
+# [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        # Search both strings with 2 pointers
+        i, j = 0, 0
+        while i < len(s) and j < len(t):
+            # If the substring and longer string match at the character, increment substring pointer
+            if s[i] == t[j]:
+                i += 1
+            # Always increment the longer string that's being searched
+            j += 1
+        # If i reached the end of the substring, there was a full match; else, there wasn't
+        return True if i == len(s) else False
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
