@@ -1,3 +1,36 @@
+# [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        results = []
+        current_permutation = []
+        # Fill a dict with the total number counts for every number in nums
+        num_counts = { num: 0 for num in nums }
+        for num in nums:
+            num_counts[num] += 1
+            
+        def generate_permutations():
+            # If the length of the current permutation = length of nums, add it to results and return (go back)
+            if len(current_permutation) == len(nums):
+                results.append(current_permutation.copy())
+                return
+            # Loop through all numbers; if they have counts remaining, try combinations with them
+            for num in num_counts:
+                if num_counts[num] > 0:
+                    current_permutation.append(num)
+                    num_counts[num] -= 1
+                    generate_permutations()
+                    num_counts[num] += 1
+                    current_permutation.pop()
+        
+        generate_permutations()
+        return results
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
