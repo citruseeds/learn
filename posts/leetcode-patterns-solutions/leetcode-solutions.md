@@ -51,6 +51,34 @@ class Solution:
             fast = fast.next.next
         return slow
 ```
+# [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        def create_node(start, end):
+            # If start is higher than end, there's no elements
+            if start > end:
+                return None
+            # Find the middle and make it the root; if even number, floor the index
+            mid = (start + end) // 2
+            root = TreeNode(nums[mid])
+            # Take the elements to the left and right of the middle to create the left and right children
+            root.left = create_node(start, mid - 1)
+            root.right = create_node(mid + 1, end)
+            return root
+        return create_node(0, len(nums) - 1)
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
