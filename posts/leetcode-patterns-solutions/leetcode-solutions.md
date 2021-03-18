@@ -317,6 +317,43 @@ class Solution:
         # If i reached the end of the substring, there was a full match; else, there wasn't
         return True if i == len(s) else False
 ```
+# [138. Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        # Store references to copy nodes with a dict with keys being the original nodes;
+        # mapping null to null for edge case of null keys in next/random; 
+        # should be able to alternatively do an if null check before assignment
+        copy_nodes = { None: None }
+        # Loop through once to create all copy nodes, without mapping
+        cur = head
+        while cur:
+            copy_nodes[cur] = Node(cur.val)
+            cur = cur.next
+        # Loop again to map copy nodes next/random pointers to their respective copies
+        cur = head
+        while cur:
+            copy_node = copy_nodes[cur]
+            copy_node.next = copy_nodes[cur.next]
+            copy_node.random = copy_nodes[cur.random]
+            cur = cur.next
+        # Return the copy of the head from the dict
+        return copy_nodes[head]
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
