@@ -201,6 +201,37 @@ class Solution:
                 asteroid_stack.append(asteroid)
         return asteroid_stack
 ```
+# [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        # max is either (root) 1 + maxleft + maxright, or 1 + max(maxleft, maxright); if node is null, 0
+        diameter = 0
+        def longest_path(node):
+            nonlocal diameter
+            if not node:
+                return 0
+            left_longest = longest_path(node.left)
+            right_longest = longest_path(node.right)
+            
+            # The longest path (diameter) will either be the longest known diameter, or 
+            # the longest path of node's left child and right child
+            diameter = max(diameter, left_longest + right_longest)
+            return max(left_longest, right_longest) + 1
+        longest_path(root)
+        return diameter
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
