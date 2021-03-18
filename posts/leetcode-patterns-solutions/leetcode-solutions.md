@@ -144,6 +144,32 @@ class Solution:
         greater_tail.next = None
         return lesser_dummy.next
 ```
+# [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def mergeTrees(self, root1: TreeNode, root2: TreeNode) -> TreeNode:
+        def sum_nodes(node1, node2):
+            if not node1 and not node2:
+                return None
+            val1 = node1.val if node1 else 0
+            val2 = node2.val if node2 else 0
+            sum_val = val1 + val2
+            left_node = sum_nodes(node1.left if node1 else None, node2.left if node2 else None)
+            right_node = sum_nodes(node1.right if node1 else None, node2.right if node2 else None)
+            return TreeNode(sum_val, left_node, right_node)
+        return sum_nodes(root1, root2)
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
