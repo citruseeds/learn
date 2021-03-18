@@ -495,6 +495,31 @@ class Solution:
             create_combinations(0, "")
         return result
 ```
+# [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        # The DP grid is 1 tile larger than necessary to account for out of bounds cases (out of bounds = 0)
+        dp = [[0 for j in range(len(text2) + 1)] for i in range(len(text1) + 1)]
+        # Iterate through the grid backwards to b uild up to the main solution
+        for i in range(len(text1) - 1, -1, -1):
+            for j in range(len(text2) - 1, -1, -1):
+                # If both characters are matching, the LCS starting from text1's ith character and
+                # text2's jth character is 1 + LCS of the comparison of the next character in both strings 
+                if text1[i] == text2[j]:
+                    dp[i][j] = 1 + dp[i + 1][j + 1]
+                # If not matching, the LCS is the max of either the LCS of the ith character and the j+1th character, or
+                # the LCS of the i+1th character and the jth character
+                else:
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j + 1])
+        # Return the result of the first tile
+        return dp[0][0]
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
