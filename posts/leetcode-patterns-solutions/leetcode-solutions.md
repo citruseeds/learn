@@ -390,6 +390,45 @@ class Solution:
         generate_permutations()
         return results
 ```
+# [10. Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        i, j = 0, 0
+        cache = {}
+        def check_match(i, j):
+            # If a match result has been previously confirmed for both strings at 2 given indicies, return it
+            if (i, j) in cache:
+                return cache[(i, j)]
+            # If both indices for the string and pattern are out of bounds, it's a match
+            if i >= len(s) and j >= len(p):
+                return True
+            # If the pattern is out of bounds but the string isn't, no match
+            if j >= len(p):
+                return False
+            # Logic for determining a match; make sure the string is still in bounds, 
+            # as the string can be shorter than the pattern due to *
+            match = i < len(s) and (s[i] == p[j] or p[j] == ".")
+            # Case to handle *; check if there's a match without the * (increment j by 2), or
+            # check if there's a match with the star (increment i by 1)
+            if j + 1 < len(p) and p[j + 1] == "*":
+                cache[(i, j)] = check_match(i, j + 2) or (match and check_match(i + 1, j))
+                return cache[(i, j)]
+            # If there's a character match, check for a match for the next characters in the string and pattern
+            if match:
+                cache[(i, j)] = check_match(i + 1, j + 1)
+                return cache[(i, j)]
+            # If there's no match and no star, no match
+            else:
+                cache[(i, j)] = False
+                return cache[(i, j)]
+        return check_match(0, 0)
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
