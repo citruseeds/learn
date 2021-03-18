@@ -429,6 +429,36 @@ class Solution:
                 return cache[(i, j)]
         return check_match(0, 0)
 ```
+# [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        current_combination = []
+        result = []
+        def create_combinations(num_open, num_closed):
+            # If all opens and closes have been used, add the current combination and return (go back)
+            if num_open == num_closed == n:
+                result.append("".join(current_combination))
+                return
+            # If opens can still be used: add one, try combinations with it, then remove it
+            if num_open < n:
+                current_combination.append("(")
+                create_combinations(num_open + 1, num_closed)
+                current_combination.pop()
+            # If closes can still be used: add one, try combinations with it, then remove it
+            if num_closed < num_open:
+                current_combination.append(")")
+                create_combinations(num_open, num_closed + 1)
+                current_combination.pop()
+        # Run all possible combinations and return the result
+        create_combinations(0, 0)
+        return result
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
