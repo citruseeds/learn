@@ -262,6 +262,41 @@ class Solution:
             return [with_root, without_root]
         return max(max_rob(root))
 ```
+# [463. Island Perimeter](https://leetcode.com/problems/island-perimeter/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        visited = set()
+        def perimeter_dfs(row, col):
+            # If a tile is a location that's water or out of bounds, adds a perimeter part to surrounding land
+            if row >= rows or col >= cols or row < 0 or col < 0 or grid[row][col] == 0:
+                return 1
+            # Skip tile if it's not water and has already been visited
+            if (row, col) in visited:
+                return 0
+            visited.add((row, col))
+            # Get perimeter by searching surrounding tiles for their perimeters
+            perimeter = 0
+            perimeter += perimeter_dfs(row + 1, col)
+            perimeter += perimeter_dfs(row - 1, col)
+            perimeter += perimeter_dfs(row, col + 1)
+            perimeter += perimeter_dfs(row, col - 1)
+            return perimeter
+        
+        # Search entire grid to find the first land tile to execute perimeter calculation
+        for row in range(rows):
+            for col in range(cols):
+                if grid[row][col] == 1:
+                    return perimeter_dfs(row, col)
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
