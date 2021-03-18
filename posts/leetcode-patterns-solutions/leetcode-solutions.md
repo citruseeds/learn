@@ -459,6 +459,42 @@ class Solution:
         create_combinations(0, 0)
         return result
 ```
+# [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        # Need to hardcode these to create the combinations
+        number_to_letters = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz" 
+        }
+        result = []
+        
+        def create_combinations(i, current_string):
+            # If the current string is as long as the digits string, done this path; 
+            # add the string to the result list and return (start going back)
+            if len(current_string) == len(digits):
+                result.append(current_string)
+                return
+            # For every possible character at the current digit, try combinations with it 
+            # (recurse on next index with current character included in current_string)
+            for char in number_to_letters[digits[i]]:
+                create_combinations(i+1, current_string + char)
+        if digits:
+            create_combinations(0, "")
+        return result
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
