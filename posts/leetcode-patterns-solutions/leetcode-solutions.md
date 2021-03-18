@@ -79,6 +79,38 @@ class Solution:
             return root
         return create_node(0, len(nums) - 1)
 ```
+# [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        # Solutiotn is the same as Binary Tree Level Order Traversal, but you only care about the last value
+        result = []
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            rightmost_node = None
+            queue_length = len(queue)
+            for i in range(queue_length):
+                node = queue.popleft()
+                if node:
+                    queue.append(node.left)
+                    queue.append(node.right)
+                    rightmost_node = node
+            if rightmost_node:
+                result.append(rightmost_node.val)
+        return result
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
