@@ -170,6 +170,37 @@ class Solution:
             return TreeNode(sum_val, left_node, right_node)
         return sum_nodes(root1, root2)
 ```
+# [735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        # Track right-moving asteroids with a stack
+        asteroid_stack = []
+        
+        for asteroid in asteroids:
+            # There will only be a collision if the current asteroid is moving left (< 0) and 
+            # there are asteroids moving right (stored in the stack)
+            while asteroid_stack and asteroid < 0 and asteroid_stack[-1] > 0:
+                result = asteroid_stack[-1] + asteroid
+                # If right-moving was larger, set left-moving to 0 so loop ends and it won't get added to the stack
+                if result > 0:
+                    asteroid = 0
+                # If left-moving was larger, pop from the stack and process next one, if it exists
+                elif result < 0:
+                    asteroid_stack.pop()
+                # If they were the same size, set left-moving to 0 and pop right-moving
+                else:
+                    asteroid = 0
+                    asteroid_stack.pop()
+            if asteroid:
+                asteroid_stack.append(asteroid)
+        return asteroid_stack
+```
 # [100. Same Tree](https://leetcode.com/problems/same-tree/)
 ## Information
 ## Question
