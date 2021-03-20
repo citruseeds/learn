@@ -449,6 +449,28 @@ class Solution:
             current_node = current_node.next
         return dummy.next
 ```
+# [120. Triangle](https://leetcode.com/problems/triangle/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        # Initialize DP array of size len(triangle) + 1; 
+        # extra space to account for base case of 0s row
+        dp = [0] * (len(triangle) + 1)
+        
+        # Iterate through triangle rows backwards
+        for row in triangle[::-1]:
+            # To calculate the cost of the minimum path at an index, 
+            # add the current number at row[i] to the minimum of dp[i] and dp[i+1]
+            for i, num in enumerate(row):
+                dp[i] = num + min(dp[i], dp[i + 1])
+        # The minimum cost of the first row is stored in the first index
+        return dp[0]
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
