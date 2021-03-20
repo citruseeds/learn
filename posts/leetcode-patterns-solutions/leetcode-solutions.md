@@ -421,6 +421,34 @@ class LRUCache:
 # param_1 = obj.get(key)
 # obj.put(key,value)
 ```
+# [203. Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        dummy = ListNode(0, head)
+        previous_node, current_node = dummy, head
+        
+        while current_node:
+            # If the current node's value should be removed, redirect the previous node's pointer to the next node;
+            # if not, set the previous node to the current node
+            if current_node.val == val:
+                previous_node.next = current_node.next
+            else:
+                previous_node = current_node
+            # Set current node to the next node
+            current_node = current_node.next
+        return dummy.next
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
