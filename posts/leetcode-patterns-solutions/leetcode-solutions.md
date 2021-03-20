@@ -19,6 +19,40 @@ class Solution:
             right_max = new_max
         return arr
 ```
+# [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        max_area = 0
+        # Store the histogram columns in a stack of its starting index and height
+        stack = []
+        
+        for i, current_height in enumerate(heights):
+            # Set the starting index to the current index
+            start_index = i
+            # Continuously check if the top of the stack is greater than the current column; 
+            # if it is, the max area it can contribute can't get higher due to the lower height column,
+            # so calculate its max height and pop it
+            while stack and stack[-1][1] > current_height:
+                index, height = stack.pop()
+                # The max height is either the current max height, or
+                # the height of the popped column * the difference of the current index and the popped column's start index
+                max_area = max(max_area, height * (i - index))
+                # The actual starting index of the current column can be moved back, 
+                # considered as the start index of the popped column
+                start_index = index
+            # Append the current column to the stack
+            stack.append((start_index, current_height))
+        # If any columns remain at the end, calculate their max heights
+        for i, height in stack:
+            max_area = max(max_area, height * (len(heights) - i))
+        return max_area
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
