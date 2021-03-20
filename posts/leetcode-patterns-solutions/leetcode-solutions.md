@@ -53,6 +53,30 @@ class Solution:
             max_area = max(max_area, height * (len(heights) - i))
         return max_area
 ```
+# [96. Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def numTrees(self, n: int) -> int:
+        num_trees = [1] * (n + 1)
+        
+        # number of trees for 0 and 1 nodes is 1; start at 2
+        for nodes in range(2, n + 1):
+            total = 0
+            for root in range(1, nodes + 1):
+                # "nodes" is the highest number, "root" is the currently selected number
+                left = root - 1
+                right = nodes - root
+                # The total number of trees for a given number of nodes is 
+                # number of trees on the left side * number of trees on the right side
+                total += num_trees[left] * num_trees[right]
+            num_trees[nodes] = total
+        return num_trees[n]
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
