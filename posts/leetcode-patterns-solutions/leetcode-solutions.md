@@ -667,6 +667,44 @@ class Solution:
         generate_subsets(0)
         return result
 ```
+# [131. Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        # Store all valid partitions in result, and track the current partition combination in current_partition
+        result = []
+        current_partition = []
+        
+        def generate_partitions(i):
+            # If the current index goes out of bounds of the given string, no combinations left;
+            # store it in result and start going back
+            if i >= len(s):
+                result.append(current_partition.copy())
+                return
+            # Check every combination in the range of i to the end of the string for palindromes;
+            # if a valid range is found, append that substring to the current partition, and 
+            # repeat for the range after that substring
+            for j in range(i, len(s)):
+                if self.is_palindrome(s, i, j):
+                    current_partition.append(s[i:j+1])
+                    generate_partitions(j + 1)
+                    current_partition.pop()
+        generate_partitions(0)
+        return result
+        
+    def is_palindrome(self, s, start, end):
+        while start < end:
+            if s[start] != s[end]:
+                return False
+            start += 1
+            end -= 1
+        return True
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
