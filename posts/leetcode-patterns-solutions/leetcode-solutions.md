@@ -471,6 +471,42 @@ class Solution:
         # The minimum cost of the first row is stored in the first index
         return dp[0]
 ```
+# [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        output = []
+        # Save the indices of the maximum values in the current window using a deque
+        max_queue = collections.deque()
+        left, right = 0, 0
+        
+        while right < len(nums):
+            # Continuously compare the last element of the dequeue with the new value about to be added; 
+            # if the new value is greater, remove the last element
+            while max_queue and nums[max_queue[-1]] < nums[right]:
+                max_queue.pop()
+            # Add the new value to the top of the deque
+            max_queue.append(right)
+            
+            # If the index of the dequeue's bottom is no longer within the window, remove it
+            if left > max_queue[0]:
+                max_queue.popleft()
+            
+            # If the window is fully expanded, add the oldest maximum value to the output; 
+            # due to the way new elements are added to the maximum value deque, the highest value will 
+            # always be at the first position
+            if (right + 1) >= k:
+                output.append(nums[max_queue[0]])
+                # Move the window along by 1 (left side doesn't move if window isn't fully expanded)
+                left += 1
+            right += 1
+        return output
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
