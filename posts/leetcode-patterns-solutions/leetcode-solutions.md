@@ -77,6 +77,35 @@ class Solution:
             num_trees[nodes] = total
         return num_trees[n]
 ```
+# [129. Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumNumbers(self, root: TreeNode) -> int:
+        def dfs(node, num):
+            # If the node is null, return 0
+            if not node:
+                return 0
+            # Multiply the given number by 10 to open the least significant digit, then add node's value to it
+            num = num * 10 + node.val
+            # If leaf node, return the number to prevent returning 0s
+            if not node.left and not node.right:
+                return num
+            # If not leaf node, recurse down the left and right sides to get the full number; 
+            # the completed numbers will get added up here in pairs of 2 and be sent up to the root
+            return dfs(node.left, num) + dfs(node.right, num)
+        return dfs(root, 0)
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
