@@ -507,6 +507,37 @@ class Solution:
             right += 1
         return output
 ```
+# [221. Maximal Square](https://leetcode.com/problems/maximal-square/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        rows, cols = len(matrix), len(matrix[0])
+        cache = {}
+        def search_squares(row, col):
+            # If the current search is out of bounds, return 0
+            if row >= rows or col >= cols:
+                return 0
+            # Get the max area for the tiles to the right, down, and diagonally (right+down)
+            if (row, col) not in cache:
+                right = search_squares(row, col + 1)
+                down = search_squares(row + 1, col)
+                diagonal = search_squares(row + 1, col + 1)
+                
+                cache[(row, col)] = 0
+                # If the current tile contains a 1, the max square area for the tile is 
+                # 1 + minimum of right, down, and diagonal tiles
+                if matrix[row][col] == "1":
+                    cache[(row, col)] = 1 + min(right, down, diagonal)
+                
+            return cache[(row, col)]
+        search_squares(0, 0)
+        return max(cache.values()) ** 2
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
