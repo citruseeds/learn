@@ -573,6 +573,34 @@ class Solution:
             current_node = next_pair_first
         return dummy.next
 ```
+# [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        # Need to track the previous node in order to be able to redirect pointers backwards
+        previous_node = None
+        current_node = head
+        
+        while current_node:
+            # Store the next node in a temporary variable (to maintain access to it after pointer to it is redirected)
+            next_node = current_node.next
+            # Set the current node's next node to the previous node (reversing the direction here)
+            current_node.next = previous_node
+            # Set the previous node to the current node, and set the current node to the next node (iterate both by 1)
+            previous_node = current_node
+            current_node = next_node
+        return previous_node
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
