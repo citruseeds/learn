@@ -1,3 +1,24 @@
+# [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def replaceElements(self, arr: List[int]) -> List[int]:
+        # Last element should be -1; start with it
+        right_max = -1
+        # Start at the end, work backwards
+        for i in range(len(arr) - 1, -1, -1):
+            # Store the rightmost max for the next iteration as either the current max, or the current element
+            new_max = max(right_max, arr[i])
+            # Set the current element to the rightmost max
+            arr[i] = right_max
+            # Set the rightmost max to the new max calculated in this iteration
+            right_max = new_max
+        return arr
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
