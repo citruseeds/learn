@@ -313,6 +313,38 @@ class Solution:
             right_node = right_node.next
         return True
 ```
+# [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        # Length of nums1 is guaranteed to be # of elements in nums1 and nums2
+        last = len(nums1) - 1
+        
+        # Start from the end of nums1, and fill with the greater value between the last elements of nums1 and nums2;
+        # since both lists are sorted, this works
+        while m > 0 and n > 0:
+            if nums1[m - 1] > nums2[n - 1]:
+                nums1[last] = nums1[m - 1]
+                m -= 1
+            else:
+                nums1[last] = nums2[n - 1]
+                n -= 1
+            last -= 1
+        
+        # If list1 ran out of elements first, place the rest of list2 elements in
+        while n > 0:
+            nums1[last] = nums2[n - 1]
+            n -= 1
+            last -= 1
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
