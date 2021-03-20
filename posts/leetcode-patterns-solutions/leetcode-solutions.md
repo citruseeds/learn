@@ -273,6 +273,46 @@ class Solution:
             k -= 1
         return current_node
 ```
+# [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        # find middle > reverse the latter half > iterate through both and compare values
+        
+        # Process for finding middle of linked list (see Middle of the Linked List)
+        fast, slow = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        # Process for reversing linked list (see Reverse Linked List)
+        prev_node = None
+        while slow:
+            next_node = slow.next
+            slow.next = prev_node
+            prev_node = slow
+            slow = next_node
+        
+        # Process for checking for palindromes; 
+        left_node, right_node = head, prev_node
+        # Check right_node since it's shorter than left_node
+        while right_node:
+            if left_node.val != right_node.val:
+                return False
+            left_node = left_node.next
+            right_node = right_node.next
+        return True
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
