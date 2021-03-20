@@ -601,6 +601,47 @@ class Solution:
             current_node = next_node
         return previous_node
 ```
+# [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        # Store course prerequisites in a dictionary of key = course number, value = list of prerequisites
+        course_prerequisites = { course: [] for course in range(numCourses) }        
+        for course, prereq in prerequisites:
+            course_prerequisites[course].append(prereq)
+        # Track courses that are currently being visited (to detect cycles) and courses that have been visited
+        currently_visiting, visited = set(), set()
+        result = []
+        def search_courses(course):
+            # If the course is still being visited from earlier and you came back to it, there's a cycle; return false
+            if course in currently_visiting:
+                return False
+            # If the course has already been fully visited earlier, it can be completed; return true
+            if course in visited:
+                return True
+            # Add the current course to the courses being visited, and visit all of its prerequisites 
+            # to check if they can be completed
+            currently_visiting.add(course)
+            for prereq in course_prerequisites[course]:
+                if not search_courses(prereq):
+                    return False
+            # After confirming all prerequisites can be completed, remove it from currently_visiting, add it to visited, and
+            # append it to the order of courses
+            currently_visiting.remove(course)
+            visited.add(course)
+            result.append(course)
+            return True
+        # Iterate through all courses and check if they can be completed; if any course cannot be completed, return empty
+        for course in range(numCourses):
+            if not search_courses(course):
+                return []
+        return result
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
