@@ -345,6 +345,82 @@ class Solution:
             n -= 1
             last -= 1
 ```
+# [146. LRU Cache](https://leetcode.com/problems/lru-cache/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Utilize doubly-linked list to track recency
+class Node:
+    def __init__(self, key, val):
+        self.key, self.val = key, val
+        self.prev = None
+        self.next = None
+        
+class LRUCache:
+    # Use dict to store cache values; initialize 2 placeholder nodes for left/right
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {}
+        
+        self.left, self.right = Node(0, 0), Node(0, 0)
+        self.left.next = self.right
+        self.right.prev = self.left
+    
+    # Remove the given node from the linked list
+    def remove(self, node):
+        next_node = node.next
+        prev_node = node.prev
+        
+        prev_node.next = next_node
+        next_node.prev = prev_node
+    
+    # Insert the given node into the linked list on the right side
+    # TODO: why in the middle of the rightmost instead of to the right of the rightmost?
+    def insert(self, node):
+        prev_node = self.right.prev
+        next_node = self.right
+        
+        prev_node.next = node
+        next_node.prev = node
+        
+        node.next = next_node
+        node.prev = prev_node
+        return
+
+    def get(self, key: int) -> int:
+        # Whenever a key is accessed, remove and re-insert the node that was accessed;
+        # Removing a node from the linked list doesn't remove it from the dict, so no issue
+        if key in self.cache:
+            self.remove(self.cache[key])
+            self.insert(self.cache[key])
+            return self.cache[key].val
+        return -1
+        
+
+    def put(self, key: int, value: int) -> None:
+        # If the key is already in the cache, remove it from the linked list to prevent duplicates
+        if key in self.cache:
+            self.remove(self.cache[key])
+        # Create a new node to store in the dict, and connect it to the linked list
+        self.cache[key] = Node(key, value)
+        self.insert(self.cache[key])
+        
+        # If the cache is over capacity, remove the leftmost node from the linked list 
+        # and its value removed from the cache
+        if len(self.cache) > self.capacity:
+            lru = self.left.next
+            self.remove(lru)
+            del self.cache[lru.key]
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
