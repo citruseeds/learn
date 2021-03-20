@@ -157,6 +157,44 @@ class Solution:
             tail.next = list2
         return dummy.next
 ```
+# [2. Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        dummy = ListNode()
+        current = dummy
+        # Use int to store the carry digit if the addition result is >= 10
+        carry = 0
+        # the lists may have unequal lengths, so null check before getting their values;
+        # it's also possible that both lists are null but a carry remains, so check the carry also
+        while l1 or l2 or carry:
+            val1 = l1.val if l1 else 0
+            val2 = l2.val if l2 else 0
+            
+            # Add both node values and the carry
+            val = val1 + val2 + carry
+            # If value is >= 10, store the most significant digit in the carry, and mod the value by 10
+            carry = val // 10
+            val = val % 10
+            # Append a new node containing the result to the result linked list
+            current.next = ListNode(val)
+            
+            # Increment nodes
+            current = current.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        return dummy.next
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
