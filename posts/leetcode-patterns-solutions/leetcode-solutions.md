@@ -538,6 +538,41 @@ class Solution:
         search_squares(0, 0)
         return max(cache.values()) ** 2
 ```
+# [24. Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0, head)
+        previous_node = dummy
+        current_node = head
+        # Check if there's a pair of nodes first; if there isn't, don't swap anything
+        while current_node and current_node.next:
+            # Store the next node and the first node of the next pair, as to not lose references
+            next_pair_first = current_node.next.next
+            next_node = current_node.next
+            
+            # Reverse the next node to point to the current node, 
+            # set the previous node to point to the next node,
+            # and set the current node to point to the next pair's first node
+            next_node.next = current_node
+            previous_node.next = next_node
+            current_node.next = next_pair_first
+            
+            # Increment the previous node and current node
+            previous_node = current_node
+            current_node = next_pair_first
+        return dummy.next
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
