@@ -224,6 +224,55 @@ class Solution:
             n = n // 10
         return result
 ```
+# [25. Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        dummy = ListNode(0, head)
+        previous_group_last = dummy
+        
+        # TODO: understanding not full yet; return
+        # Find the kth element, then reverse LL until you approach kth element's next (swap kth, stop here)
+        while True:
+            # Search ahead to get the relative kth node, if it exists; if not, don't swap and break
+            kth_node = self.get_kth_node(previous_group_last, k)
+            if not kth_node:
+                break
+            next_group_first = kth_node.next
+            previous_node = kth_node.next
+            current_node = previous_group_last.next
+            
+            # Reverse the k-sized linked list group until you approach the end (next_group_first)
+            while current_node != next_group_first:
+                next_node = current_node.next
+                current_node.next = previous_node
+                previous_node = current_node
+                current_node = next_node
+                
+            # After swapping, kth element is at the start, 
+            # and the first element is at the end (previous_group_last.next)
+            temp = previous_group_last.next
+            previous_group_last.next = kth_node
+            previous_group_last = temp
+            
+        return dummy.next
+    
+    def get_kth_node(self, current_node, k):
+        while current_node and k > 0:
+            current_node = current_node.next
+            k -= 1
+        return current_node
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
