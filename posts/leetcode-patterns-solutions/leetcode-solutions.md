@@ -106,6 +106,57 @@ class Solution:
             return dfs(node.left, num) + dfs(node.right, num)
         return dfs(root, 0)
 ```
+# [148. Sort List](https://leetcode.com/problems/sort-list/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def sortList(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        left = head
+        right = self.find_mid(head)
+        temp = right.next
+        right.next = None
+        right = temp
+        
+        left = self.sortList(left)
+        right = self.sortList(right)
+        return self.merge_lists(left, right)
+    # See Middle of the Linked List for details
+    # TODO: why does fast start at head.next and not head?
+    def find_mid(self, head):
+        fast, slow = head.next, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    # See Merge Two Sorted Lists for details
+    def merge_lists(self, list1, list2):
+        dummy = ListNode()
+        tail = dummy
+        while list1 and list2:
+            if list1.val > list2.val:
+                tail.next = list2
+                list2 = list2.next
+            else:
+                tail.next = list1
+                list1 = list1.next
+            tail = tail.next
+        if list1:
+            tail.next = list1
+        if list2:
+            tail.next = list2
+        return dummy.next
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
