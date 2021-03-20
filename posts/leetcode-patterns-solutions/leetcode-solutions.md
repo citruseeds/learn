@@ -195,6 +195,35 @@ class Solution:
             l2 = l2.next if l2 else None
         return dummy.next
 ```
+# [202. Happy Number](https://leetcode.com/problems/happy-number/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        # Use a set to record numbers that have appeared previously; 
+        # if the same number appears twice, it will be an infinite loop
+        visited = set()
+        while n not in visited:
+            visited.add(n)
+            # Calculate the new value of n and repeat the loop if needed
+            n = self.sum_squares(n)
+            
+            # If n = 1, it'll stay there; return true
+            if n == 1:
+                return True
+    
+    # Mod n by 10 to get the least significant digit, then use integer division to decrease n by a factor of 10 until 0
+    def sum_squares(self, n):
+        result = 0
+        while n:
+            result += ((n % 10) ** 2)
+            n = n // 10
+        return result
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
