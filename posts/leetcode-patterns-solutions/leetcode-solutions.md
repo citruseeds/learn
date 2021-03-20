@@ -642,6 +642,31 @@ class Solution:
                 return []
         return result
 ```
+# [78. Subsets](https://leetcode.com/problems/subsets/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        current_subset = []
+        def generate_subsets(i):
+            # If the current index is out of bounds, finished the permutation; append the current subset result and go back
+            if i >= len(nums):
+                result.append(current_subset.copy())
+                return
+            # Try all combinations including the number at this index
+            current_subset.append(nums[i])
+            generate_subsets(i + 1)
+            # Try all combinations without including the number at this index
+            current_subset.pop()
+            generate_subsets(i + 1)
+        generate_subsets(0)
+        return result
+```
 # [47. Permutations II](https://leetcode.com/problems/permutations-ii/)
 ## Information
 ## Question
