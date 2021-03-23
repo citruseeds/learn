@@ -514,6 +514,31 @@ class Solution:
                 left = mid + 1
         return False
 ```
+# [704. Binary Search](https://leetcode.com/problems/binary-search/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            # Get middle value; calculated like this instead of left + right // 2 due to possible int overflows
+            mid = left + (right - left) // 2
+            # If the middle value is the target, found value; return it
+            if nums[mid] == target:
+                return mid
+            # If the target is greater than the middle value, search the greater half
+            if nums[mid] > target:
+                right = mid - 1
+            # If not, it must be in the left half, if present
+            else:
+                left = mid + 1
+        # If the value isn't in the array, return -1
+        return -1
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
