@@ -382,6 +382,28 @@ class Solution:
         # If all numbers were negative, first missing positive is array length + 1
         return n + 1
 ```
+# [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        result = []
+        for num in nums:
+            # If the value at the index of num - 1 is positive, negate it to mark as seen 
+            # (if it's already negative, already been seen)
+            if nums[abs(num) - 1] > 0:
+                nums[abs(num) - 1] *= -1
+                
+        # Loop through all indices; if index of i is positive, its value wasn't in the array; append to result
+        for i in range(1, len(nums) + 1):
+            if nums[i - 1] > 0:
+                result.append(i)
+        return result
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
