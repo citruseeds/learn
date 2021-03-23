@@ -341,6 +341,47 @@ class Solution:
             return True
         return False
 ```
+# [41. First Missing Positive](https://leetcode.com/problems/first-missing-positive/submissions/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # "Reduce" the problem to a 1 <= nums[i] <= n "indices as markers" trick 
+    # (the one present in "Find All Duplicates in an Array" and "Find All Numbers Disappeared in an Array") by
+    # checking if 1 is present; if it is, then consider the fact that any value that's negative, 0, or
+    # greater than the length of the array can be discarded/ignored and replaced with a 1, since 1 won't be
+    # the first missing positive (since it was already checked); after, go through the array and use indices as markers, 
+    # then check every index to see if it's positive; first positive index is the result, and if all are negative, 
+    # result is len(nums) + 1
+    # 
+    # Note: positive values that are greater than the length don't need to be changed, but their values need to be ignored
+    # during the marking process (since index would be out of bounds)
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+        # Explicitly check for 1 so it can be used as a fodder value
+        if 1 not in nums:
+            return 1
+        
+        # Set any zeroes/negatives/numbers above array length to 1
+        for i in range(n):
+            if nums[i] <= 0 or nums[i] > n:
+                nums[i] = 1
+        
+        # If the value at an index of num - 1 is not already negative, negate it as a mark for num's value being present
+        for num in nums:
+            if nums[abs(num) - 1] > 0:
+                nums[abs(num) - 1] *= -1
+        
+        # Iterate from 1 to n to check for positive values; first positive value is the first missing positive
+        for i in range(1, n + 1):
+            if nums[i - 1] > 0:
+                return i
+        # If all numbers were negative, first missing positive is array length + 1
+        return n + 1
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
