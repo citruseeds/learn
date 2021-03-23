@@ -89,6 +89,28 @@ class Solution:
                 return root
         return lca(root, p, q)
 ```
+# [55. Jump Game](https://leetcode.com/problems/jump-game/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        # Only need to check if you can get to the last valid position; starts at the end
+        last_position = len(nums) - 1
+        for i in range(len(nums) - 1, -1, -1):
+            # In order to jump from index i to the last valid position, the current index + its jump distance
+            # must be >= the index of the last valid position
+            print(i, nums[i], last_position)
+            if i + nums[i] >= last_position:
+                last_position = i
+        # If the last valid position is 0, can reach the end; return true. Else, return false
+        if last_position == 0:
+            return True
+        return False
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
