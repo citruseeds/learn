@@ -111,6 +111,31 @@ class Solution:
             return True
         return False
 ```
+# [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        # ways[last] = ways[last - 1] + ways[last - 2]
+        # ways[first] = 1
+        # ways[first+1] = 2 (reaching step 2)
+        if n == 1:
+            return 1
+        dp = [0] * (n + 1)
+        
+        # One distinct way to reach step 1, two distinct ways to reach step 2
+        dp[1] = 1
+        dp[2] = 2
+        for i in range(3, n + 1):
+            # Reaching step i is # combinations of the previous step + combinations of 2 steps back
+            dp[i] = dp[i - 1] + dp[i - 2]
+        # Return the # of combinations for the nth step
+        return dp[n]
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
