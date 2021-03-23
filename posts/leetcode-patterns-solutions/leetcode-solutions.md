@@ -25,17 +25,14 @@
 ## Bip Manipulation
 ## Unique/Miscellaneous
 ___
-# [323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) 
+# []() 
 ## Information
 ## Question
 ## Solutions
 ## Notes
 ## Solution Code
 ``` py
-class Solution:
-    # Solution is similar to number of islands, except as a graph traversal rather than 4-directional grid traversal
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        num_components = 0
+```
         
 # [1. Two Sum](https://leetcode.com/problems/two-sum/)
 ## Information
