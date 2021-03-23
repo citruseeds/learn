@@ -675,6 +675,58 @@ class Solution:
                     right = mid - 1
         return -1
 ```
+# [51. N-Queens](https://leetcode.com/problems/n-queens/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        # Track the columns, diagonals, and anti-diagonals with queens in them;
+        # TODO: diagonals store what? why 2 * n - 1? 
+        cols = [0] * n
+        diagonals = [0] * (2 * n-1)
+        anti_diagonals = [0] * (2 * n-1)
+        queen_placements = set()
+        
+        result = []
+        
+        def generate_solutions(row):
+            # If all rows are filled with queens, append to result as a valid solution
+            if row >= n:
+                append_solution()
+                return
+            for col in range(n):
+                if check_valid(row, col):
+                    # place queen
+                    queen_placements.add((row, col))
+                    cols[col] = 1
+                    diagonals[row - col] = 1
+                    anti_diagonals[row + col] = 1
+                    generate_solutions(row + 1)
+                    # remove queen
+                    queen_placements.remove((row, col))
+                    cols[col] = 0
+                    diagonals[row - col] = 0
+                    anti_diagonals[row + col] = 0
+        
+        def check_valid(row, col):
+            if cols[col] or diagonals[row - col] or anti_diagonals[row + col]:
+                return False
+            return True
+        
+        def append_solution():
+            solution = []
+            for _, col in sorted(queen_placements):
+                solution.append('.' * col + 'Q' + '.' * (n - col - 1))
+            result.append(solution)
+            return
+        
+        generate_solutions(0)
+        return result
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
