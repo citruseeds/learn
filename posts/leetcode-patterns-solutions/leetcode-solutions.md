@@ -404,6 +404,27 @@ class Solution:
                 result.append(i)
         return result
 ```
+# [442. Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # Using "indices as value storage" thing since the problem constraints allow for it
+    # (all values are between 1 and n inclusive, where n is the array size; 
+    # specifically looking for double appearances in an array of single appearances)
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        result = []
+        for num in nums:
+            # If the value in index is negative, it's been seen before; append it to result
+            if nums[abs(num) - 1] < 0:
+                result.append(abs(num))
+            # Multiply the index of num - 1 by -1 to indicate it's been seen before
+            nums[abs(num) - 1] *= -1
+        return result
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
