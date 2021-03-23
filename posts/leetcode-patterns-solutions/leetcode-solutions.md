@@ -778,6 +778,47 @@ class Solution:
         # guaranteed to be correct because there will only ever be 1 majority element in this problem's case
         return current_majority_num
 ```
+# [1466. Reorder Routes to Make All Paths Lead to the City Zero](https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        # Store outgoing edge connections in a set to check for changes
+        edges = { (a, b) for a, b in connections }
+        # Store adjacent node lists in a dict to properly traverse the graph
+        neighbors = { city: [] for city in range(n) }
+        # Track visited nodes to prevent duplicate visits
+        visited = set()
+        changes = 0
+        
+        # Set up neighbor connections using the connections given
+        for a, b in connections:
+            neighbors[a].append(b)
+            neighbors[b].append(a)
+            
+        def dfs(city):
+            nonlocal edges, neighbors, visited, changes
+            
+            for neighbor in neighbors[city]:
+                # If the node has been processed already, skip
+                if neighbor in visited:
+                    continue
+                # If the current neighbor has an edge to the current city,
+                # it can reach it, so don't increment changes; otherwise, it needs to be changed
+                if (neighbor, city) not in edges:
+                    changes += 1
+                # Add the current node to visited, and traverse its neighbors
+                visited.add(neighbor)
+                dfs(neighbor)
+        # Start at 0 to get the # of changes for all to reach city 0
+        visited.add(0)
+        dfs(0)
+        return changes
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
