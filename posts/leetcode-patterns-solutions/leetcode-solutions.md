@@ -425,6 +425,33 @@ class Solution:
             nums[abs(num) - 1] *= -1
         return result
 ```
+# [287. Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = nums[0], nums[0]
+        
+        # Since the values of the numbers are guaranteed to be a valid index, can look for a cycle by
+        # setting 2 indices to the index of their values
+        while True:
+            slow =  nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        
+        # Reset the slow pointer to the beginning, and increment both slow and fast (now moving slow) pointers
+        # until they meet, then return the index's value (see "Linked List Cycle II")
+        slow = nums[0]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return fast
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
