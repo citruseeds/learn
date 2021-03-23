@@ -1,3 +1,21 @@
+# Overview
+## Question Lists
+* [Blind Curated 75](https://leetcode.com/list/xoqag3yj/) ([thread link](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-100-LeetCode-Questions-to-Save-Your-Time-OaM1orEU))
+* [LeetCode Patterns](https://seanprashad.com/leetcode-patterns/)
+## Notes from Experience
+# Question Types
+## Arrays
+### Array Value/Index Tricks
+### K-Sum
+### Top K (Order Statistic)
+## Binary Search
+## Backtracking
+## DP
+## Intervals
+## Design
+## Bip Manipulation
+## Unique/Miscellaneous
+___
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
