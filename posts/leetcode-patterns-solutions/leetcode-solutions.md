@@ -643,6 +643,38 @@ class Solution:
                     right = mid - 1
         return False
 ```
+# [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            # Integer division to get the middle of the array
+            mid = (left + right) // 2
+            # If the middle is the target, return it
+            if nums[mid] == target:
+                return mid
+            # If the middle number is greater than the leftmost element, left side is normal; check left side
+            if nums[mid] >= nums[left]:
+                # If the target's value is between the leftmost element and mid, search left side
+                # TODO: why check target < nums[mid]?
+                if target >= nums[left] and target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            # If the leftmost element is greater than the middle number, left side is rotated; check right side
+            else:
+                if target <= nums[right] and target > nums[mid]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
