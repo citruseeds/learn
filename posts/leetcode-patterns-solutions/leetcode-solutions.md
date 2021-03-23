@@ -485,6 +485,35 @@ class Solution:
             fast = fast.next
         return fast
 ```
+# [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        rows, cols = len(matrix), len(matrix[0])
+        
+        # Consider the matrix as a 1D array by considering the end as length of rows * cols
+        left, right = 0, rows * cols - 1   
+        while left <= right:
+            mid = left + (right - left) // 2
+            # To get the row, divide by the number of cols; since each row is length cols, 
+            # the integer you land on will be the row number
+            row = mid // cols
+            # To get the column, mod by cols to get the col number
+            col = mid % cols
+            # After this, apply regular binary search
+            if matrix[row][col] == target:
+                return True
+            if matrix[row][col] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return False
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
