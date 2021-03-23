@@ -309,6 +309,38 @@ class Solution:
             result[i] = left_products[i] * right_products[i]
         return result
 ```
+# [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        # Map closing parentheses to their corresponding opening parentheses; 
+        # makes it easier to determine parenthesis type when parsing the string
+        parenthesis_mapping = {")": "(", "}": "{", "]": "["}
+        
+        # Iterate through string characters
+        for char in s:
+            # If the character is a closing parenthesis, pop the most recent open parenthesis from the stack, and 
+            # check if the parenthesis types match up; if they do, continue; if they don't, return false
+            if char in parenthesis_mapping:
+                top = stack.pop() if stack else '#'
+                if parenthesis_mapping[char] != top:
+                    return False
+            # If the character is an opening parenthesis, push it onto the stack to check for closure later
+            else:
+                stack.append(char)
+                
+        # If stack is empty, all matches were successful; return true. Else, return false 
+        # (remaining open parentheses exist)
+        if not stack:
+            return True
+        return False
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
