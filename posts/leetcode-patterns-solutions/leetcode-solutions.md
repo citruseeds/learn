@@ -176,6 +176,59 @@ class Solution:
         
         return create_tree(0, len(postorder) - 1)
 ```
+# [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        # The first element of the preorder is the root of the tree; can recursively generate tree off this;
+        # the preorder index's first value tells where the tree's root value is,
+        # and the root value's inorder position tells you the elements on the left/right side of the root
+        preorder_index = 0
+        
+        # Track the indices of the inorder traversal using the values of the tree;
+        # the index of preorder[preorder_index] in the inorder list tells you 
+        # which elements are on the left and right side of the tree; 
+        # store in a dict to access these indices in constant time, as opposed to a linear search for the values
+        inorder_index_map = {}
+        for index, value in enumerate(inorder):
+            inorder_index_map[value] = index
+        
+        def create_tree(inorder_start, inorder_end):
+            nonlocal preorder_index
+            # If called with an empty list, the parent has no child on that side; return none
+            if inorder_start > inorder_end:
+                return None
+            
+            # The first element of the preorder traversal is the root
+            root = TreeNode(preorder[preorder_index])
+            # Increment the preorder index to get the root of the next tree for the next iteration
+            preorder_index += 1
+            
+            # The end index of the left values is 1 less than the root node's position in the inorder traversal
+            left_tree_end = inorder_index_map[root.val] - 1
+            # The start index of the right values is 1 greater than the root node's position in the inorder traversal
+            right_tree_start = inorder_index_map[root.val] + 1
+            
+            # Generate the left child first, then the right tree to follow preorder traversal order;
+            # the left side takes the numbers to the left of the root, and the right side takes the right numbers
+            root.left = create_tree(inorder_start, left_tree_end)
+            root.right = create_tree(right_tree_start, inorder_end)
+            
+            return root
+        
+        return create_tree(0, len(preorder) - 1)
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
