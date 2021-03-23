@@ -270,6 +270,45 @@ class Solution:
             # Set the second node's next node to the (incremented) first node, and increment the second node (before changing its next node)
             second_node.next, second_node = first_node, second_node.next
 ```
+# [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        length = len(nums)
+        
+        # Store the products of all elements to the left of a given index, and 
+        # the values of all elements to the right of a given index
+        left_products, right_products, result = [0] * length, [0] * length, [0] * length
+        
+        # The product of all elements to the left of the first index and 
+        # all elements to the right of the last index is 1 as a default
+        left_products[0] = 1
+        right_products[length - 1] = 1
+        
+        # Start from the second element, since first element is already known
+        for i in range(1, length):
+            # The product of all elements to the left of an index is 
+            # the number at the previous index (new) * all products of previous indices
+            left_products[i] = nums[i - 1] * left_products[i - 1]
+        
+        # Fill right products backwards, from the second last element, since the last element is already known
+        for i in range(length - 2, -1, -1):
+            right_products[i] = nums[i + 1] * right_products[i + 1]
+            
+        print(left_products, right_products)
+        
+        # Generate result array; the result of a given index i is left products[i] * right products[i];
+        # due to how the left/right products were generated, a given index will never include itself,
+        # since a given index is calculated using all elements before/after it for left/right side respectively
+        for i in range(length):
+            result[i] = left_products[i] * right_products[i]
+        return result
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
