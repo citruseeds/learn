@@ -608,6 +608,41 @@ class Solution:
                 right = mid - 1
         return -1
 ```
+# [81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # Solution is the same as "Search in Rotated Sorted Array", but incrementing/decrementing the search space if
+    # indices next to the borders are duplicates
+    def search(self, nums: List[int], target: int) -> bool:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            # While the bounds don't cross and the second element is the same as the first, increment left bound
+            while left < right and nums[left] == nums[left + 1]:
+                left += 1
+            # While the bounds don't cross and the second last element is the same as the last, decrement right bound
+            while left < right and nums[right] == nums[right - 1]:
+                right -= 1
+                
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return True
+            if nums[mid] >= nums[left]:
+                if target >= nums[left] and target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if target <= nums[right] and target > nums[mid]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return False
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
