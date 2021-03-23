@@ -57,6 +57,38 @@ class Solution:
         # number of components will be equal to the number of dfs searched started
         return num_components
 ```
+# [235. Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def lca(root, p, q):
+            # Parent node has no child on the given side; return null
+            if not root:
+                return
+            # If both p and q are greater than the root, traverse down the right side
+            if p.val > root.val and q.val > root.val:
+                return lca(root.right, p, q)
+            # If both p and q are lesser than the root, traverse down the left side
+            elif p.val < root.val and q.val < root.val:
+                return lca(root.left, p, q)
+            # If p and q split up (both arent greater or lesser than the root), 
+            # the root is the LCA, as they go in different directions from that point
+            else:
+                return root
+        return lca(root, p, q)
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
