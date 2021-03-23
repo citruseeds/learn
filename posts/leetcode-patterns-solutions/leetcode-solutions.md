@@ -727,6 +727,29 @@ class Solution:
         generate_solutions(0)
         return result
 ```
+# [77. Combinations](https://leetcode.com/problems/combinations/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        result = []
+        current_combination = []
+        def generate_combinations(i):
+            if len(current_combination) >= k:
+                result.append(current_combination.copy())
+                return
+            # Iterate through all numbers from the starting number to the max number; try combinations with them, then pop
+            for num in range(i, n + 1):
+                current_combination.append(num)
+                generate_combinations(num + 1)
+                current_combination.pop()
+        generate_combinations(1)
+        return result
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
