@@ -136,6 +136,46 @@ class Solution:
         # Return the # of combinations for the nth step
         return dp[n]
 ```
+# [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    # Algorithm is the same as "Construct Binary Tree from Preorder and Inorder Traversal", but
+    # with postorder you need to check the end of the list instead of the start (decrement the index instead of increment), 
+    # and right child must be generated before left
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        postorder_index = len(postorder) - 1
+        
+        inorder_index_map = {}
+        for index, value in enumerate(inorder):
+            inorder_index_map[value] = index
+        
+        def create_tree(inorder_start, inorder_end):
+            nonlocal postorder_index
+            
+            if inorder_start > inorder_end:
+                return None
+            
+            root = TreeNode(postorder[postorder_index])
+            postorder_index -= 1
+            
+            
+            root.right = create_tree(inorder_index_map[root.val] + 1, inorder_end)
+            root.left = create_tree(inorder_start, inorder_index_map[root.val] - 1)
+            return root
+        
+        return create_tree(0, len(postorder) - 1)
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
