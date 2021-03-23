@@ -750,6 +750,34 @@ class Solution:
         generate_combinations(1)
         return result
 ```
+# [169. Majority Element](https://leetcode.com/problems/majority-element/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        # Track the number that has currently been seen the most, and the number of occurences
+        current_majority_num = None
+        current_majority_count = 0
+        
+        for num in nums:
+            # If the count of the current majority is 0, set the current number to be the majority number
+            if current_majority_count == 0:
+                current_majority_num = num
+            # If the current number is the same as the current majority number, increment its count; 
+            # otherwise, decrement its count
+            if num == current_majority_num:
+                current_majority_count += 1
+            else:
+                current_majority_count -= 1
+        # The number in the current majority is the number with the most occurences;
+        # guaranteed to be correct because there will only ever be 1 majority element in this problem's case
+        return current_majority_num
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
