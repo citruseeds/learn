@@ -452,6 +452,39 @@ class Solution:
             fast = nums[fast]
         return fast
 ```
+# [142. Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        slow, fast = head, head
+        # Check if a cycle is present; if there is one, break out
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                break
+        # If the loop ended because of null and not a cycle, return null
+        if not fast or not fast.next:
+            return None
+        
+        # Reset slow node to the start, and increment both pointers by 1 until they meet
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+        return fast
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
