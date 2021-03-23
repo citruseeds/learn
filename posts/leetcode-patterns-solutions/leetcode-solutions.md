@@ -539,6 +539,37 @@ class Solution:
         # If the value isn't in the array, return -1
         return -1
 ```
+# [154. Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        # If there's only 1 element, return it
+        if len(nums) == 1:
+            return nums[0]
+        
+        left, right = 0, len(nums) - 1
+        
+        # If the last element is greater than the first element, there's no rotation
+        if nums[left] < nums[right]:
+            return nums[left]
+        
+        # TODO: ? something about invariants; can't really know without more reading. come back here later
+        while left < right:
+            mid = left + (right - left) // 2
+            
+            if nums[mid] < nums[right]:
+                right = mid
+            elif nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right -= 1
+        return nums[left]
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
