@@ -229,6 +229,47 @@ class Solution:
         
         return create_tree(0, len(preorder) - 1)
 ```
+# [143. Reorder List](https://leetcode.com/problems/reorder-list/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        # Find middle of linked list algorithm
+        slow_node, fast_node = head, head
+        while fast_node and fast_node.next:
+            slow_node = slow_node.next
+            fast_node = fast_node.next.next
+        
+        # Reverse linked list algorithm
+        prev_node = None
+        current_node = slow_node
+        while current_node:
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+        
+        first_node = head
+        second_node = prev_node
+        
+        while second_node.next:
+            # Set the first node's next node to the second node, and increment the first node (before changing its next node)
+            first_node.next, first_node = second_node, first_node.next
+            # Set the second node's next node to the (incremented) first node, and increment the second node (before changing its next node)
+            second_node.next, second_node = first_node, second_node.next
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
