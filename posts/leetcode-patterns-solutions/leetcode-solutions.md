@@ -570,6 +570,44 @@ class Solution:
                 right -= 1
         return nums[left]
 ```
+# [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # Searching for the inflection point; where a given value's previous element is > itself
+    def findMin(self, nums: List[int]) -> int:
+        # If there's only 1 element, return it
+        if len(nums) == 1:
+            return nums[0]
+        
+        left, right = 0, len(nums) - 1
+        
+        # If the last element is greater than the first element, there's no rotation
+        if nums[left] < nums[right]:
+            return nums[left]
+        
+        while left <= right:
+            mid = left + (right - left) // 2
+            
+            # If this element is greater than the next element, return next element
+            if nums[mid] > nums[mid + 1]:
+                return nums[mid + 1]
+            
+            # If this element is lesser than its previous element, return this element
+            if nums[mid - 1] > nums[mid]:
+                return nums[mid]
+            
+            # If the middle value is greater than the left side, no rotation here; search right side
+            if nums[left] < nums[mid]:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
