@@ -16,6 +16,47 @@
 ## Bip Manipulation
 ## Unique/Miscellaneous
 ___
+# [323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # Solution is similar to number of islands, except as a graph traversal rather than 4-directional grid traversal
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        num_components = 0
+        
+        # Create adjacency list
+        nodes = {}
+        for node in range(n):
+            nodes[node] = []
+        
+        for edge in edges:
+            nodes[edge[0]].append(edge[1])
+            nodes[edge[1]].append(edge[0])
+        
+        # Track previously visited nodes with a set
+        visited = set()
+        def dfs(node):
+            # If node has been seen before, ignore it
+            if node in visited:
+                return
+            # Visit the node, and dfs through all of its neighbors
+            visited.add(node)
+            for neighbor in nodes[node]:
+                dfs(neighbor)
+            
+        # Iterate through all nodes; if the node hasn't been visited yet, 
+        # increment num_compoenents and dfs the node to visit all of its components
+        for node in nodes:
+            if node not in visited:
+                num_components += 1
+                dfs(node)
+        # number of components will be equal to the number of dfs searched started
+        return num_components
+```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information
 ## Question
