@@ -1551,6 +1551,41 @@ class Solution:
             return check_sum(node.left, change) or check_sum(node.right, change)
         return check_sum(root, targetSum)
 ```
+# [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
+        result = []
+        def check_sum(node, current_target, current_path):
+            # Return null if parent has no child
+            if not node:
+                return
+            # Add the current value to the path, so the path can be returned if a valid path is found
+            current_path.append(node.val)
+            # If target - value = 0 and the current node is a leaf, append the current path to the result
+            change = current_target - node.val
+            if change == 0 and not node.left and not node.right:
+                result.append(current_path.copy())
+            else:
+                # Recurse down children with the new target being the difference of the target and node's value
+                check_sum(node.left, change, current_path) 
+                check_sum(node.right, change, current_path)
+            # Pop the node's value after traversing its children to prevent the value from polluting other paths
+            current_path.pop()
+        check_sum(root, targetSum, [])
+        return result
+```
 # [120. Triangle](https://leetcode.com/problems/triangle/)
 ## Information
 ## Question
