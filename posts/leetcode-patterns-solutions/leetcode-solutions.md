@@ -1522,6 +1522,35 @@ class Solution:
             return 1 + min(check_depth(node.left), check_depth(node.right))
         return check_depth(root)
 ```
+# [112. Path Sum](https://leetcode.com/problems/path-sum/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+        def check_sum(node, current_target):
+            # Return null if parent has no child
+            if not node:
+                return False
+            
+            # If target - value = 0 and the current node is a leaf, return true
+            change = current_target - node.val
+            if change == 0 and not node.left and not node.right:
+                return True
+            
+            # Recurse down children with the new target being the difference of the target and node's value
+            return check_sum(node.left, change) or check_sum(node.right, change)
+        return check_sum(root, targetSum)
+```
 # [120. Triangle](https://leetcode.com/problems/triangle/)
 ## Information
 ## Question
