@@ -1492,6 +1492,36 @@ class Solution:
             return root
         return create_node(0, len(nums) - 1)
 ```
+# [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        # Need this to account for input being empty list
+        if not root:
+            return 0
+        
+        def check_depth(node):
+            # If node is null, return max value to signify invalid path
+            if not node:
+                return float('inf')
+            # If the node has no children (leaf node), return 1
+            if not node.left and not node.right:
+                return 1
+            # The minimum depth of the current node is 1 (itself) + minimum depth of children
+            return 1 + min(check_depth(node.left), check_depth(node.right))
+        return check_depth(root)
+```
 # [120. Triangle](https://leetcode.com/problems/triangle/)
 ## Information
 ## Question
