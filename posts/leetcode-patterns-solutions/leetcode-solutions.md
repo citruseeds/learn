@@ -3179,6 +3179,44 @@ class Solution:
             return TreeNode(sum_val, left_node, right_node)
         return sum_nodes(root1, root2)
 ```
+# [637. Average of Levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def averageOfLevels(self, root: TreeNode) -> List[float]:
+        averages = []
+        queue = collections.deque()
+        
+        queue.append(root)
+        
+        # Traverse by levels using BFS; average level = level sum / queue length for that level
+        while queue:
+            queue_length = len(queue)
+            level_sum = 0
+            
+            for _ in range(queue_length):
+                node = queue.popleft()
+                if node:
+                    level_sum += node.val
+                    # Null check before adding children to queue; null values can be added, 
+                    # and will mess up the queue length during average calculation
+                    if node.left:
+                        queue.append(node.left)
+                    if node.right:
+                        queue.append(node.right)
+            averages.append(level_sum / queue_length)
+        return averages
+```
 # [704. Binary Search](https://leetcode.com/problems/binary-search/) 
 ## Information
 ## Question
