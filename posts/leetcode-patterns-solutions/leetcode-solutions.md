@@ -12,6 +12,9 @@
 * **Be able to properly translate the question's solution from thought to working program.** It's possible that I have/had this issue because I did little self-solving at the start; remedy this by just doing/redoing more questions over time without looking at answers.
 * **Comment code lines and explain to yourself why it's done the way it is.** If you make yourself explain the solution in a way that's correct and coherent to yourself, you'll likely remember it better. You may also forget the whys over time otherwise.
 * **Don't neglect things like variable/function naming, proper spacing, clear/clean code, general proper coding skills, and the thought process.** In an interview setting, these are all important things that the interviewer will be looking for; there may be other things as well dependent on the interviewer/company. The question given is a means to see all of these things, *especially the thought process*.
+# Patterns
+## Data Structures
+## Algorithms
 # Question Types
 ## Arrays
 ### Array Value/Index Tricks
