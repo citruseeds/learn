@@ -1,9 +1,11 @@
 # Learn
 Aims to create detailed, concise notes on software engineering topics.
 
-* **bold** = priority
-* *italic* = complete
 ## Table of Contents
+### Miscellaneous
+* [Information Sources](https://github.com/citruseeds/learn/blob/master/posts/info-sources.md)
+### LeetCode Patterns & Solutions
+* [LeetCode Solutions](https://github.com/citruseeds/learn/blob/master/posts/leetcode-patterns-solutions/leetcode-solutions.md)
 ### Systems
 ### Development/Design Practices & Principles
 * **Version Control**
@@ -12,10 +14,8 @@ Aims to create detailed, concise notes on software engineering topics.
 * Databases
 ### Algorithms
 ### Data Structures
-### LeetCode Patterns & Solutions
-* Blind Curated 75
 ### Languages
-* **Python**
+* [**Python**](https://github.com/citruseeds/learn/blob/master/posts/languages/python.md)
 * Kotlin
 * Swift
 * Objective-C
