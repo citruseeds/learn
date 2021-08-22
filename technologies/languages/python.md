@@ -1,4 +1,13 @@
 # Python
+## Random Notes
+* scope curly braces don't exist; scope is dependent on indentation; wrong indentation gives compile errors
+## Casting
+``` py
+string_integer = "635"
+
+# Casting to int
+actual_integer = int(string_integer)
+```
 ## Variables
 Variables aren't declared with types. 
 
@@ -12,6 +21,13 @@ other_var_name
 `var_name` works, `other_var_name` doesn't (error: `NameError`).
 
 Variable naming convention is `lower_case_with_underscores`.
+## Types
+### Numeric
+* 
+
+https://docs.python.org/3/library/stdtypes.html
+## Arithmetic
+
 ## Output
 print() function:
 
@@ -41,6 +57,24 @@ print("Hello", "World", sep="@", end="#")
 
 https://docs.python.org/3/library/functions.html#print
 
+## If/Else Conditionals
+``` py
+var = 0
+x = 8
+y = 9
+
+if x > y:
+    var = x
+else:
+    var = y
+
+# Prints "9"
+print(var)
+```
+``` py
+# var is set to "oranges" 
+var = "apples" if 5 > 6 else "oranges" 
+```
 
 ## Comments
 ``` py

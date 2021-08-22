@@ -1,4 +1,12 @@
 # Leetcode Patterns
+current pain points:
+* dp
+* greedy
+* backtracking
+* recursion (and how it can be compared to iterative?)
+unsure:
+* bit manip
+* topological sort
 ## Arrays
 ## Breadth-First Search (BFS)
 ## Backtracking

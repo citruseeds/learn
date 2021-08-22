@@ -4,6 +4,8 @@
 multiple separate commits over one large commit; 
 
 one commit = one "thing" added; if its more than one thing, split into multiple commits
+
+git add -p (patch) to commit blocks of a file, rather than the whole file
 ### Files to Commit
 ### Commit Message
 ## Branching Strategies

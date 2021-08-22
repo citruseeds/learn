@@ -3,9 +3,9 @@ Aims to create detailed, concise notes on software engineering topics.
 
 ## Table of Contents
 ### Miscellaneous
-* [Information Sources](https://github.com/citruseeds/learn/blob/master/posts/info-sources.md)
+* [Information Sources]()
 ### LeetCode Patterns & Solutions
-* [LeetCode Solutions](https://github.com/citruseeds/learn/blob/master/posts/leetcode-patterns-solutions/leetcode-solutions.md)
+* [LeetCode Solutions]()
 ### Systems
 ### Development/Design Practices & Principles
 * **Version Control**
@@ -15,51 +15,27 @@ Aims to create detailed, concise notes on software engineering topics.
 ### Algorithms
 ### Data Structures
 ### Languages
-* [**Python**](https://github.com/citruseeds/learn/blob/master/posts/languages/python.md)
+* [**Python**]()
 * Kotlin
 * Swift
 * Objective-C
 * Go
-* C
-* C++
 * Java
 * JavaScript
 * TypeScript
 * HTML
 * CSS
 * SQL
-* C#
-* Ruby
-* PHP
-* Lua
-* Scala
-* Elixir
-* Perl
 * Rust
 * Bash
 * Assembly
 ### Frameworks
 #### Frontend
 * **React**
-* **Angular**
-* **Vue**
-* Svelte
-* Ember.js
 #### Backend
-* Laravel
-* Ruby on Rails
-* Django
-* .NET Core
-* Express.js
-* Spring
 #### Mobile
 * **Android**
 * **iOS**
-* **React Native**
-* Flutter
-* Xamarin
-* Ionic
-* NativeScript
 #### Databases
 * MySQL
 * SQL Server
@@ -73,12 +49,10 @@ Aims to create detailed, concise notes on software engineering topics.
 * Firebase
 ### Other Technologies
 * Kubernetes
-* Markdown
-### Miscellaneous
-* Acronyms & Terms
 ### Game Development Notes
 ### Netflix Notes
 ### Unplaced
+* [Acronyms & Terms]()
 * GraphQL
 * Hadoop (mapreduce? yarn?)
 * TeamCity

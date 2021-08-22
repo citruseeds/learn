@@ -1,4 +1,5 @@
 # Overview
+Problems, solutions, and solution code are primarily taken from LeetCode solutions or other users, with comments written by me for understanding, along with certain variable name changes for clarity. Links to the problems on LeetCode are included with each question.
 ## Question Lists
 * [Blind Curated 75](https://leetcode.com/list/xoqag3yj/) ([thread link](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-100-LeetCode-Questions-to-Save-Your-Time-OaM1orEU))
 * [LeetCode Patterns](https://seanprashad.com/leetcode-patterns/)
@@ -13,13 +14,54 @@
 * **Comment code lines and explain to yourself why it's done the way it is.** If you make yourself explain the solution in a way that's correct and coherent to yourself, you'll likely remember it better. You may also forget the whys over time otherwise.
 * **Don't neglect things like variable/function naming, proper spacing, clear/clean code, general proper coding skills, and the thought process.** In an interview setting, these are all important things that the interviewer will be looking for; there may be other things as well dependent on the interviewer/company. The question given is a means to see all of these things, *especially the thought process*.
 # Patterns
+things that are building blocks of a lot of questions;
 ## Data Structures
+* heap
+* stack
+* queue
+* linkedlist
+* hashmap
+* tree
+* trie (prefix tree)
 ## Algorithms
+* quickselect
+* cycle detection
 # Question Types
+Questions will be organized by their pattern type, if it's not unique; try to organize problems in a given problem type in a way that the knowledge "stacks" onto each other?
 ## Arrays
 ### Array Value/Index Tricks
-### K-Sum
+when bounds is something like, `1 <= arr[i] <= len(arr)`, might be an indicator that the solution is related to that; moreso if it asks something like, `Can you solve in O(n) time and O(1) space?`; idea is apparently similar to cycle sort
+* LC 287
+### k-Sum
+* LC 1
+* LC 15
 ### Top K (Order Statistic)
+nlogn with sorting; nlogk with heap; n with quickselect; if you have sorting/heap knowledge first 2 are probably easy to get, but quickselect perhaps not as much
+___
+[Top K problems - Sort, Heap, and QuickSelect](https://leetcode.com/discuss/general-discussion/1088565/Top-K-problems-Sort-Heap-and-QuickSelect)
+___
+
+## Graphs/Trees
+bfs/dfs; topological sort; union find
+### Graphs
+### Topological Sort
+### Trees
+#### Tree Traversal
+##### Breadth-First Search (BFS)
+sensical for tree level order traversals
+##### Depth-First Search (DFS)
+##### Level Order Traversal
+usually bfs
+##### Morris Inorder Traversal
+O(n) time, (notably) O(1) space
+* LC 99
+#### Heap
+#### Trie (Prefix Tree)
+## Two Pointers
+### Sliding Window
+## Linked Lists
+common themes: dummy nodes, find middle of linked list, reverse linked list, identify/find cycle
+## Matrix
 ## Binary Search
 ## Backtracking
 ## DP
@@ -27,6 +69,7 @@
 ## Design
 ## Bip Manipulation
 ## Unique/Miscellaneous
+### Minimax
 ___
 # []() 
 ## Information
@@ -36,16 +79,16 @@ ___
 ## Solution Code
 ``` py
 ```
-        
+
 # [1. Two Sum](https://leetcode.com/problems/two-sum/)
 ## Information
 **Category:** Easy
-        
+
 **Patterns:** ?
-        
+
 ## Question
 Given an array of integers `nums` and an integer `target`, return *indices* of the two numbers such that they *add up* to *`target`*.
-            
+
 You may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.
 
 You can return the answer in any order.
@@ -120,7 +163,7 @@ class Solution:
         while l1 or l2 or carry:
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
-
+            
             # Add both node values and the carry
             val = val1 + val2 + carry
             # If value is >= 10, store the most significant digit in the carry, and mod the value by 10
@@ -135,7 +178,7 @@ class Solution:
             l2 = l2.next if l2 else None
         return dummy.next
 ```
-# 3. Longest Substring Without Repeating Characters
+# [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 ## Information
 ## Question
 ## Solutions
@@ -176,10 +219,10 @@ class Solution:
                 return cache[(i, j)]
             # If both indices for the string and pattern are out of bounds, it's a match
             if i >= len(s) and j >= len(p):
-            return True
+                return True
             # If the pattern is out of bounds but the string isn't, no match
             if j >= len(p):
-        return False
+                return False
             # Logic for determining a match; make sure the string is still in bounds, 
             # as the string can be shorter than the pattern due to *
             match = i < len(s) and (s[i] == p[j] or p[j] == ".")
@@ -198,7 +241,7 @@ class Solution:
                 return cache[(i, j)]
         return check_match(0, 0)
 ```
-# 11. Container With Most Water
+# [11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 ## Information
 ## Question
 ## Solutions
@@ -217,7 +260,7 @@ class Solution:
                 right -= 1
         return max_water
 ```
-# 15. 3Sum
+# [15. 3Sum](https://leetcode.com/problems/3sum/)
 ## Information
 ## Question
 ## Solutions
@@ -491,14 +534,14 @@ class Solution:
             # Store the next node and the first node of the next pair, as to not lose references
             next_pair_first = current_node.next.next
             next_node = current_node.next
-        
+            
             # Reverse the next node to point to the current node, 
             # set the previous node to point to the next node,
             # and set the current node to point to the next pair's first node
             next_node.next = current_node
             previous_node.next = next_node
             current_node.next = next_pair_first
-        
+            
             # Increment the previous node and current node
             previous_node = current_node
             current_node = next_pair_first
@@ -531,14 +574,14 @@ class Solution:
             next_group_first = kth_node.next
             previous_node = kth_node.next
             current_node = previous_group_last.next
-        
+            
             # Reverse the k-sized linked list group until you approach the end (next_group_first)
             while current_node != next_group_first:
                 next_node = current_node.next
                 current_node.next = previous_node
                 previous_node = current_node
                 current_node = next_node
-        
+                
             # After swapping, kth element is at the start, 
             # and the first element is at the end (previous_group_last.next)
             temp = previous_group_last.next
@@ -552,6 +595,14 @@ class Solution:
             current_node = current_node.next
             k -= 1
         return current_node
+```
+# [30. Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
 ```
 # [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) 
 ## Information
@@ -574,9 +625,9 @@ class Solution:
                 # If the target's value is between the leftmost element and mid, search left side
                 # TODO: why check target < nums[mid]?
                 if target >= nums[left] and target < nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
+                    right = mid - 1
+                else:
+                    left = mid + 1
             # If the leftmost element is greater than the middle number, left side is rotated; check right side
             else:
                 if target <= nums[right] and target > nums[mid]:
@@ -626,6 +677,39 @@ class Solution:
         # If all numbers were negative, first missing positive is array length + 1
         return n + 1
 ```
+# [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    # The water at a current tile = min(max_left_side, max_right_side) - tile_height.
+    # Since taking the min, consider that the higher value doesn't actually matter; 
+    # only the min value and current tile's height does, which is the basis for 2 pointer approach
+    def trap(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        result = 0
+        # Track the current known max for left and right sides for water storage calculation
+        current_left_max, current_right_max = 0, 0
+        while left < right:
+            # If the current value is greater than the max, set it to the max
+            if height[left] > current_left_max:
+                    current_left_max = height[left]
+            if height[right] > current_right_max:
+                current_right_max = height[right]
+            
+            # Add the lesser side's tile's value to result and move the pointer of that side
+            # (calculate current tile's value with max - current height)
+            if current_left_max < current_right_max:
+                result += current_left_max - height[left]
+                left += 1
+            else:
+                result += current_right_max - height[right]
+                right -= 1
+        return result
+```
 # [46. Permutations](https://leetcode.com/problems/permutations/)
 ## Information
 ## Question
@@ -644,7 +728,7 @@ class Solution:
         num_counts = { num: 0 for num in nums }
         for num in nums:
             num_counts[num] += 1
-        
+            
         def generate_permutations():
             # If the length of the current permutation = length of nums, add it to results and return (go back)
             if len(current_permutation) == len(nums):
@@ -677,7 +761,7 @@ class Solution:
         num_counts = { num: 0 for num in nums }
         for num in nums:
             num_counts[num] += 1
-        
+            
         def generate_permutations():
             # If the length of the current permutation = length of nums, add it to results and return (go back)
             if len(current_permutation) == len(nums):
@@ -691,7 +775,7 @@ class Solution:
                     generate_permutations()
                     num_counts[num] += 1
                     current_permutation.pop()
-            
+        
         generate_permutations()
         return results
 ```
@@ -1148,7 +1232,7 @@ class Solution:
             # While the bounds don't cross and the second last element is the same as the last, decrement right bound
             while left < right and nums[right] == nums[right - 1]:
                 right -= 1
-            
+                
             mid = (left + right) // 2
             if nums[mid] == target:
                 return True
@@ -1164,6 +1248,66 @@ class Solution:
                     right = mid - 1
         return False
 ```
+# [82. Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        # Use dummy node to maintain access to head of the list, in case the head is deleted
+        dummy = ListNode(0, head)
+        prev_node, current_node = dummy, dummy.next
+        
+        while current_node:
+            # If the current node has the same value as the next node, continuously increment the current node
+            # until the end of the duplicates is reached
+            if current_node.next and current_node.val == current_node.next.val:
+                while current_node.next and current_node.val == current_node.next.val:
+                    current_node = current_node.next
+                # After reaching the end, set the previous node's pointer to the current node's next pointer 
+                # to remove all references to the duplicate values
+                prev_node.next = current_node.next
+            # If not a duplicate, increment the previous node
+            else:
+                prev_node = prev_node.next
+            # Increment thet current node to continue searching
+            current_node = current_node.next
+        return dummy.next
+```
+# [83. Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        current_node = head
+        while current_node and current_node.next:
+            # If the next node's value is the same as the current node's value, remove the next node 
+            # by setting the current node's next node to the next node's next node (deleting ref to next node).
+            # The if statement will continuously run and not increment while there's duplicates due to the if/else
+            if current_node.val == current_node.next.val:
+                current_node.next = current_node.next.next
+            # If different value, increment current node
+            else:
+                current_node = current_node.next
+        return head
+```
 # [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
 ## Information
 ## Question
@@ -1176,7 +1320,7 @@ class Solution:
         max_area = 0
         # Store the histogram columns in a stack of its starting index and height
         stack = []
-    
+        
         for i, current_height in enumerate(heights):
             # Set the starting index to the current index
             start_index = i
@@ -1273,7 +1417,7 @@ class Solution:
 class Solution:
     def numTrees(self, n: int) -> int:
         num_trees = [1] * (n + 1)
-
+        
         # number of trees for 0 and 1 nodes is 1; start at 2
         for nodes in range(2, n + 1):
             total = 0
@@ -1374,6 +1518,66 @@ class Solution:
                 output.append(current_level)
         return output
 ```
+# [103. Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    # Solution is the same as "Binary Tree Level Order Traversal", except 
+    # the levels are reversed in alternating order using a boolean flag
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        output = []
+        queue = collections.deque()
+        queue.append(root)
+        should_reverse = False
+        while queue:
+            queue_length = len(queue)
+            current_level = []
+            for i in range(queue_length):
+                node = queue.popleft()
+                if node:
+                    current_level.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
+            if current_level:
+                if should_reverse:
+                    current_level.reverse()
+                output.append(current_level)
+                should_reverse = not should_reverse
+        return output
+```
+# [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        def check_depth(node):
+            if not node:
+                return 0
+            # Add 1 to account for current node's height, recurse down the left and right children;
+            # the max depth at this node is 1 + max depth of left or right child
+            return 1 + max(check_depth(node.left), check_depth(node.right))
+        return check_depth(root)
+```
 # [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) 
 ## Information
 ## Question
@@ -1422,9 +1626,9 @@ class Solution:
             # the left side takes the numbers to the left of the root, and the right side takes the right numbers
             root.left = create_tree(inorder_start, left_tree_end)
             root.right = create_tree(right_tree_start, inorder_end)
-                
+            
             return root
-                
+        
         return create_tree(0, len(preorder) - 1)
 ```
 # [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
@@ -1446,26 +1650,59 @@ class Solution:
     # and right child must be generated before left
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         postorder_index = len(postorder) - 1
-            
+        
         inorder_index_map = {}
         for index, value in enumerate(inorder):
             inorder_index_map[value] = index
-            
+        
         def create_tree(inorder_start, inorder_end):
             nonlocal postorder_index
-        
+            
             if inorder_start > inorder_end:
                 return None
-        
+            
             root = TreeNode(postorder[postorder_index])
             postorder_index -= 1
-        
+            
             
             root.right = create_tree(inorder_index_map[root.val] + 1, inorder_end)
             root.left = create_tree(inorder_start, inorder_index_map[root.val] - 1)
             return root
         
         return create_tree(0, len(postorder) - 1)
+```
+# [107. Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    # The solution is the same as "Binary Tree Level Order Traversal", except the output is reversed at the end
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        output = []
+        queue = collections.deque()
+        queue.append(root)
+        while queue:
+            queue_length = len(queue)
+            current_level = []
+            for i in range(queue_length):
+                node = queue.popleft()
+                if node:
+                    current_level.append(node.val)
+                    queue.append(node.left)
+                    queue.append(node.right)
+            if current_level:
+                output.append(current_level)
+        output.reverse()
+        return output
 ```
 # [108. Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 ## Information
@@ -1589,6 +1826,22 @@ class Solution:
         check_sum(root, targetSum, [])
         return result
 ```
+# [116. Populating Next Right Pointers in Each Node](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [117. Populating Next Right Pointers in Each Node II(https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [120. Triangle](https://leetcode.com/problems/triangle/)
 ## Information
 ## Question
@@ -1632,7 +1885,7 @@ class Solution:
             if price > prices[current_maximum]:
                 current_maximum = i
                 known_max_profit = max(known_max_profit, (prices[current_maximum] - prices[current_minimum]))
-        
+                
         return known_max_profit
 ```
 # [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)
@@ -1695,7 +1948,7 @@ class Solution:
             right -= 1
         return True
 ```
-# 128. Longest Consecutive Sequence
+# [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
 ## Information
 ## Question
 ## Solutions
@@ -1873,11 +2126,11 @@ class Solution:
         # Use 2 nodes; fast_node will increment by 2 every iteration, slow_node by 1
         slow_node = head
         fast_node = head
-            
+        
         while fast_node:
             slow_node = slow_node.next
             fast_node = fast_node.next
-        
+            
             # If fast_node isn't null (not end of list), increment again; 
             # if fast_node == slow_node (fast_node caught up to slow_node), there's a cycle; return true. 
             # If there's no cycle, fast_node will become null and won't cross paths with slow_node
@@ -2004,7 +2257,7 @@ class LRUCache:
         
         node.next = next_node
         node.prev = prev_node
-                return
+        return
 
     def get(self, key: int) -> int:
         # Whenever a key is accessed, remove and re-insert the node that was accessed;
@@ -2078,7 +2331,7 @@ class Solution:
             if list1.val > list2.val:
                 tail.next = list2
                 list2 = list2.next
-                else:
+            else:
                 tail.next = list1
                 list1 = list1.next
             tail = tail.next
@@ -2451,6 +2704,22 @@ class Solution:
                 return False
         return True
 ```
+# [208. Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 ## Information
 ## Question
@@ -2491,6 +2760,14 @@ class Solution:
             if not search_courses(course):
                 return []
         return result
+```
+# [211. Design Add and Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
 ```
 # [213. House Robber II](https://leetcode.com/problems/house-robber-ii/)
 ## Information
@@ -2556,13 +2833,13 @@ class Solution:
                 right = search_squares(row, col + 1)
                 down = search_squares(row + 1, col)
                 diagonal = search_squares(row + 1, col + 1)
-        
+                
                 cache[(row, col)] = 0
                 # If the current tile contains a 1, the max square area for the tile is 
                 # 1 + minimum of right, down, and diagonal tiles
                 if matrix[row][col] == "1":
                     cache[(row, col)] = 1 + min(right, down, diagonal)
-        
+                
             return cache[(row, col)]
         search_squares(0, 0)
         return max(cache.values()) ** 2
@@ -2705,6 +2982,14 @@ class Solution:
                 return root
         return lca(root, p, q)
 ```
+# [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) 
 ## Information
 ## Question
@@ -2794,7 +3079,7 @@ class Solution:
         s_length, t_length = len(s), len(t)
         # If both strings are not the same length, they can't be anagrams
         if s_length != t_length:
-        return False
+            return False
         # Use dictionary to store character counts
         char_count = defaultdict(int)
         
@@ -2895,6 +3180,14 @@ class Solution:
                     dp[i] = max(dp[i], 1 + dp[j])
         return max(dp)
 ```
+# [310. Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [322. Coin Change](https://leetcode.com/problems/coin-change/)
 ## Information
 ## Question
@@ -2960,6 +3253,14 @@ class Solution:
         # number of components will be equal to the number of dfs searched started
         return num_components
 ```
+# [336. Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [337. House Robber III](https://leetcode.com/problems/house-robber-iii/)
 ## Information
 ## Question
@@ -2983,7 +3284,7 @@ class Solution:
                 return [0, 0]
             left_max = max_rob(node.left)
             right_max = max_rob(node.right)
-
+            
             with_root = node.val + left_max[1] + right_max[1]
             without_root = max(left_max) + max(right_max)
             
@@ -3010,6 +3311,38 @@ class Solution:
         # If i reached the end of the substring, there was a full match; else, there wasn't
         return True if i == len(s) else False
 ```
+# [421. Maximum XOR of Two Numbers in an Array](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [424. Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [425. Word Squares](https://leetcode.com/problems/word-squares/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [437. Path Sum III](https://leetcode.com/problems/path-sum-iii/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [442. Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) 
 ## Information
 ## Question
@@ -3031,6 +3364,14 @@ class Solution:
             nums[abs(num) - 1] *= -1
         return result
 ```
+# [444. Sequence Reconstruction](https://leetcode.com/problems/sequence-reconstruction/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) 
 ## Information
 ## Question
@@ -3046,7 +3387,7 @@ class Solution:
             # (if it's already negative, already been seen)
             if nums[abs(num) - 1] > 0:
                 nums[abs(num) - 1] *= -1
-        
+                
         # Loop through all indices; if index of i is positive, its value wasn't in the array; append to result
         for i in range(1, len(nums) + 1):
             if nums[i - 1] > 0:
@@ -3088,6 +3429,14 @@ class Solution:
                 if grid[row][col] == 1:
                     return perimeter_dfs(row, col)
 ```
+# [472. Concatenated Words](https://leetcode.com/problems/concatenated-words/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
 ## Information
 ## Question
@@ -3118,6 +3467,14 @@ class Solution:
             return max(left_longest, right_longest) + 1
         longest_path(root)
         return diameter
+```
+# [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
 ```
 # [572. Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)
 ## Information
@@ -3150,9 +3507,9 @@ class Solution:
         # Base cases: if the end of the main tree's subtrees is reached, no matching subtree exists, or
         # if the current subtree is matching, return true (as it's found)
         if not s:
-                return False
+            return False
         if validate(s, t):
-        return True
+            return True
         # Loop case: if the current main tree's subtree isn't matching, check its left and right subtrees
         return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
 ```
@@ -3220,6 +3577,30 @@ class Solution:
             averages.append(level_sum / queue_length)
         return averages
 ```
+# [642. Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [654. Maximum Binary Tree](https://leetcode.com/problems/maximum-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [662. Maximum Width of Binary Tree](https://leetcode.com/problems/maximum-width-of-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [704. Binary Search](https://leetcode.com/problems/binary-search/) 
 ## Information
 ## Question
@@ -3245,6 +3626,14 @@ class Solution:
         # If the value isn't in the array, return -1
         return -1
 ```
+# [720. Longest Word in Dictionary](https://leetcode.com/problems/longest-word-in-dictionary/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [735. Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
 ## Information
 ## Question
@@ -3256,7 +3645,7 @@ class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         # Track right-moving asteroids with a stack
         asteroid_stack = []
-    
+        
         for asteroid in asteroids:
             # There will only be a collision if the current asteroid is moving left (< 0) and 
             # there are asteroids moving right (stored in the stack)
@@ -3269,12 +3658,36 @@ class Solution:
                 elif result < 0:
                     asteroid_stack.pop()
                 # If they were the same size, set left-moving to 0 and pop right-moving
-            else:
+                else:
                     asteroid = 0
                     asteroid_stack.pop()
             if asteroid:
                 asteroid_stack.append(asteroid)
         return asteroid_stack
+```
+# [745. Prefix and Suffix Search](https://leetcode.com/problems/prefix-and-suffix-search/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [828. Count Unique Characters of All Substrings of a Given String](https://leetcode.com/problems/count-unique-characters-of-all-substrings-of-a-given-string/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [863. All Nodes Distance K in Binary Tree](https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
 ```
 # [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
 ## Information
@@ -3296,6 +3709,48 @@ class Solution:
             fast = fast.next.next
         return slow
 ```
+# [904. Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+class Solution:
+    def totalFruit(self, tree: List[int]) -> int:
+        # max sliding window of at most k distinct elements where k = 2
+        left = 0
+        baskets = collections.defaultdict(int)
+        total_fruit = 0
+        for right, tree_type in enumerate(tree):
+            baskets[tree_type] += 1
+            # If there are more than 2 distinct fruit types, continuously shrink the window
+            while len(baskets) > 2:
+                baskets[tree[left]] -= 1
+                if baskets[tree[left]] == 0:
+                    del baskets[tree[left]]
+                left += 1
+            # The total known amount of fruit possible is either itself, or the size of the current window
+            # (since 1 fruit per window index)
+            total_fruit = max(total_fruit, right - left + 1)
+        return total_fruit
+```
+# [995. Minimum Number of K Consecutive Bit Flips](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
+# [1065. Index Pairs of a String](https://leetcode.com/problems/index-pairs-of-a-string/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
+```
 # [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
 ## Information
 ## Question
@@ -3316,10 +3771,18 @@ class Solution:
                     dp[i][j] = 1 + dp[i + 1][j + 1]
                 # If not matching, the LCS is the max of either the LCS of the ith character and the j+1th character, or
                 # the LCS of the i+1th character and the jth character
-                    else:
+                else:
                     dp[i][j] = max(dp[i + 1][j], dp[i][j + 1])
         # Return the result of the first tile
         return dp[0][0]
+```
+# [1203. Sort Items by Groups Respecting Dependencies](https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/) 
+## Information
+## Question
+## Solutions
+## Notes
+## Solution Code
+``` py
 ```
 # [1299. Replace Elements with Greatest Element on Right Side](https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/)
 ## Information

@@ -47,6 +47,11 @@ O(logn) time, since values to search is halved each iteration
 
 [Binary Search - GeeksforGeeks](https://www.geeksforgeeks.org/binary-search/)
 ## Graph Traversal
+### Depth-first Search (DFS)
+### Breadth-first Search (BFS)
 ### Dijkstra
 ### Topological Sort
 ### A*
+## Unsorted
+* minimax?
+* manachers?
